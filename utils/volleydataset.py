@@ -1,8 +1,11 @@
+import os
 import cv2
-import pandas as pd
-from torchvision import transforms
-from torch.utils.data import Dataset
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import torch
+from torchvision import transforms
+from torch.utils.data import Dataset, DataLoader
 
 
 class VollyDataset(Dataset):
@@ -33,7 +36,7 @@ class VollyDataset(Dataset):
     # getitem function
     def __getitem__(self, index):
         # Get row information
-        selected_row = self.dataset.iloc[index]
+        selected_row = self.dataset.iloc[index]            
 
         # read video
         cap = cv2.VideoCapture(selected_row['video_path'])
@@ -58,7 +61,7 @@ class VollyDataset(Dataset):
         output[:,:,0] = image_1; output[:,:,1] = image_2; output[:,:,2] = image_3
         output        = self.transform(output)
         
-        return output
+        return output, selected_row['video_path']
 
 
     # return len of triplets
@@ -72,3 +75,25 @@ class VollyDataset(Dataset):
         return img
 
 
+
+
+
+######### --------------- TEST --------------- #########
+# volley_dataloader = DataLoader(VollyDataset('merged_dataset.csv', 1080, 720), 
+#                        batch_size= 5,
+#                        shuffle=True,
+#                     #    num_workers=1,
+#                     #    pin_memory= True
+#                        )
+
+
+# for i,j in volley_dataloader:
+#     img = i[0].numpy()
+#     for i in range(3):
+#         X = img[i]
+#         plt.imshow(X)
+#         plt.show()
+#     print(img[2].shape);exit()
+
+# X = next(iter(volley_dataloader))
+# print(X.shape)
