@@ -1,2 +1,3 @@
 tracknet_venv/*
 games/*
+utils/__pycache__/*
