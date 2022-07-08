@@ -31,7 +31,7 @@ class FocalLoss(nn.Module):
         focal_loss = ((1-pt)**self.gamma) * log
 
         if self.alpha != None:
-            focal_loss = list(map(lambda x, y: x*self.alpha if y==1 else x , focal_loss, y))
+            focal_loss = list(map(lambda x, y: x*self.alpha if y==1 else x , focal_loss, targets))
 
         # return focal_loss
         return torch.tensor(np.mean(focal_loss))
