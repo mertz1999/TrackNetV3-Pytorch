@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision import transforms
-from generate_hearmap import genHeatMap
+from generate_heatmap import genHeatMap
 from torch.utils.data import Dataset, DataLoader
 
 

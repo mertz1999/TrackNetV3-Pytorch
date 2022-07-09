@@ -14,7 +14,7 @@ def genHeatMap(w, h, cx, cy, r, mag):
     mag: factor to change range of grayscale
 
     """
-    if cx == -1 or cy == -1:
+    if cx == 0 and cy == 0:
         return np.zeros((h, w))
 
     x, y = np.meshgrid(np.linspace(1, w, w), np.linspace(1, h, h))
