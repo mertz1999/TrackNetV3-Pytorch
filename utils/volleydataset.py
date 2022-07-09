@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision import transforms
-from generate_heatmap import genHeatMap
+from .generate_heatmap import genHeatMap
 from torch.utils.data import Dataset, DataLoader
 
 
@@ -20,12 +20,18 @@ class VollyDataset(Dataset):
     """
     # Define initial function
     def __init__(self, dataset_path, r=3, mag=1, width=512, height=288):
-        print(" ---------- Dataset in loaded ---------- \n")
+        print(" ---------- Dataset is loaded ---------- ")
         self.dataset = pd.read_csv(dataset_path)
         self.width   = width
         self.height  = height
         self.r       = r
         self.mag     = mag
+
+        print("Number of frames : ", len(self.dataset))
+        print("Width            : ", self.width)
+        print("Height           : ", self.height)
+        print("\n")
+
 
         # Define Transform list 
         # --- Define Transforms
