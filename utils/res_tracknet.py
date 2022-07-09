@@ -40,7 +40,7 @@ class ResNet_BottleNeck(nn.Module):
             self.blocks.append(nn.Conv2d(self.filters, self.filters, kernel_size=1, stride=1, padding='same'))
             self.blocks.append(nn.BatchNorm2d(self.filters))
 
-        self.blocks.append(nn.ReLU())
+        # self.blocks.append(nn.ReLU())
 
 
         # --- shortcut part
@@ -103,7 +103,7 @@ class ResNet_Transpose(nn.Module):
 
                 nn.Conv2d(self.filters, self.filters, kernel_size=1, stride=1, padding='same'),
                 nn.BatchNorm2d(self.filters),
-                nn.ReLU(),
+                # nn.ReLU(),
 
         )
 
@@ -189,7 +189,6 @@ class ResNet_Track(nn.Module):
 
                 nn.Conv2d(self.pre_channel, self.in_channels, kernel_size=3, stride=1, padding='same'),
                 nn.BatchNorm2d(self.in_channels),
-                nn.Sigmoid()
         )
 
     # Building block function
@@ -234,7 +233,7 @@ class ResNet_Track(nn.Module):
         output = self.conv_t4(d_c1)
         output = self.last(output)
 
-        return output
+        return torch.sigmoid(nn.functional.normalize(output, dim=1))
 
 
 # dummy = torch.ones((1, 3, 288, 512))
