@@ -19,8 +19,8 @@ class VollyDataset(Dataset):
 
     """
     # Define initial function
-    def __init__(self, dataset_path, r=3, mag=1, width=512, height=288):
-        print(" ---------- Dataset is loaded ---------- ")
+    def __init__(self, dataset_path, r=3, mag=1, width=512, height=288, name='training'):
+        print(" ---------- Dataset is loaded ({}) ---------- ".format(name))
         if dataset_path is str:
             self.dataset = pd.read_csv(dataset_path)
         else:
