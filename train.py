@@ -10,6 +10,7 @@ TP, FP1, FP2, TN, FN are defined as below:
 
 """
 
+from logging import raiseExceptions
 from utils.volleydataset import VollyDataset
 from utils.res_tracknet import ResNet_Track
 from utils.focalloss import FocalLoss, FocalLoss2
@@ -37,6 +38,7 @@ GAMMA        = 2
 LR           = 0.01
 EPOCH        = 50
 TOlERANCE    = 10
+LOAD_MODEL   = "./klk.pl" # Path to model
 
 
 print = Print()
@@ -69,6 +71,16 @@ else:
 # Loading Model
 model = ResNet_Track().to(device)
 model.last[6].bias.data.fill_(-3.2)
+
+if LOAD_MODEL != None:
+    try:
+        model.load_state_dict(torch.load(LOAD_MODEL))
+        model.eval()
+        print("\nModel ({}) is Loaded".format(LOAD_MODEL))
+    except:
+        print("Problem in loading model ! ");exit()
+
+
 
 
 # Loading loss function
@@ -158,7 +170,14 @@ for epoch in range(EPOCH):
     print("precision : {:.5f}".format(accuracy))
     print("recall    : {:.5f}".format(accuracy))
 
-    
+    # Save model
+    torch.save(model.state_dict(), "models/last_model.pt")
+    if total_loss/len(volley_dataloader) < best_loss:
+        best_loss = total_loss/len(volley_dataloader)
+        torch.save(model.state_dict(), "models/best_loss_model.pt")
+    if accuracy > best_accuracy:
+        best_accuracy = accuracy
+        torch.save(model.state_dict(), "models/best_acc_model.pt")
 
 
 
