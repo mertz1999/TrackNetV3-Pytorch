@@ -187,7 +187,7 @@ class ResNet_Track(nn.Module):
                 nn.BatchNorm2d(self.pre_channel),
                 nn.ReLU(),
 
-                nn.Conv2d(self.pre_channel, self.in_channels, kernel_size=3, stride=1, padding='same'),
+                nn.Conv2d(self.pre_channel, self.in_channels, kernel_size=1, stride=1, padding='same'),
                 nn.BatchNorm2d(self.in_channels),
         )
 
@@ -233,7 +233,7 @@ class ResNet_Track(nn.Module):
         output = self.conv_t4(d_c1)
         output = self.last(output)
 
-        return torch.sigmoid(nn.functional.normalize(output, dim=1))
+        return torch.sigmoid(output)
 
 
 # dummy = torch.ones((1, 3, 288, 512))
