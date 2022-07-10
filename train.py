@@ -8,7 +8,9 @@ from utils.res_tracknet import ResNet_Track
 from utils.focalloss import FocalLoss, FocalLoss2
 from torch.utils.data import DataLoader
 from torch.optim import Adadelta
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import pandas as pd
 import torch.nn as nn
 import torch
 import time
@@ -25,8 +27,11 @@ GAMMA        = 2
 LR           = 0.01
 EPOCH        = 50
 
+# Train test split
+data_train, data_val = train_test_split(pd.read_csv(dataset_path), test_size=0.05, random_state=0)
+
 # Load Dataset 
-volley_dataset    = VollyDataset(dataset_path, r=R, width=WIDTH, height=HEIGHT)
+volley_dataset    = VollyDataset(data_train, r=R, width=WIDTH, height=HEIGHT)
 volley_dataloader = DataLoader(volley_dataset, 
                        batch_size= BATCH_SIZE,
                        shuffle=True,

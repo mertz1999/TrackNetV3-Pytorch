@@ -21,7 +21,10 @@ class VollyDataset(Dataset):
     # Define initial function
     def __init__(self, dataset_path, r=3, mag=1, width=512, height=288):
         print(" ---------- Dataset is loaded ---------- ")
-        self.dataset = pd.read_csv(dataset_path)
+        if dataset_path is str:
+            self.dataset = pd.read_csv(dataset_path)
+        else:
+            self.dataset = dataset_path
         self.width   = width
         self.height  = height
         self.r       = r
