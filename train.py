@@ -8,37 +8,60 @@ TP, FP1, FP2, TN, FN are defined as below:
     TN  : True negative.
     FN  : False positive.
 
+options:
+
+  -h, --help            show this help message and exit
+  --HEIGHT              height of image input(default: 288)
+  --WIDTH               width of image input(default: 512)
+  --epochs              number of training epochs(default: 50)
+  --load_weights        path to load pre-trained weights(default: None)
+  --sigma               radius of circle generated in heat map(default: 3)
+  --tol                 acceptable tolerance of heat map circle center between ground truth and prediction(default: 10.0)
+  --batch_size          batch size(default: 2)
+  --lr                  initial learning rate(default: 0.01)
+  --dataset DATASET     Path of dataset (merged dataset)
+  --worker WORKER       Number of worker to increase speed (default: 1
+  --alpha ALPHA         Focal loss Alpha(default: 0.85)
+  --gamma GAMMA         Focal loss gamma(default: 2)
+
+
+Note: WE recommend you to use default opetions for first one.
+
 """
 
-from logging import raiseExceptions
-from utils.volleydataset import VollyDataset
-from utils.res_tracknet import ResNet_Track
+from ast import arg
+from sklearn.model_selection import train_test_split
 from utils.focalloss import FocalLoss, FocalLoss2
 from utils.validation import outcome, evaluation
-from utils.utils import Print
+from utils.volleydataset import VollyDataset
+from utils.res_tracknet import ResNet_Track
 from torch.utils.data import DataLoader
+from logging import raiseExceptions
 from torch.optim import Adadelta
-from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+from utils.utils import Print
+from parser import parser
+import torch.nn as nn
 import pandas as pd
 import numpy as np
-import torch.nn as nn
 import torch
 import time
 
+
 # Parameters
-dataset_path = './merged_dataset.csv'
-BATCH_SIZE   = 1
-WIDTH        = 512
-HEIGHT       = 288
-R            = 3
-WORKERS      = 1
-ALPHA        = 0.85
-GAMMA        = 2
-LR           = 0.01
-EPOCH        = 50
-TOlERANCE    = 10
-LOAD_MODEL   = "./klk.pl" # Path to model
+args = parser.parse_args()
+dataset_path = args.dataset
+BATCH_SIZE   = args.batch_size
+WIDTH        = args.WIDTH
+HEIGHT       = args.HEIGHT
+R            = args.sigma
+WORKERS      = args.worker
+ALPHA        = args.alpha  
+GAMMA        = args.gamma
+LR           = args.lr
+EPOCH        = args.epochs
+TOlERANCE    = args.tol
+LOAD_MODEL   = args.load_weights
 
 
 print = Print()
@@ -72,7 +95,7 @@ else:
 model = ResNet_Track().to(device)
 model.last[6].bias.data.fill_(-3.2)
 
-if LOAD_MODEL != None:
+if LOAD_MODEL != 'None':
     try:
         model.load_state_dict(torch.load(LOAD_MODEL))
         model.eval()
