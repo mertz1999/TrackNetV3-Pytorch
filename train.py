@@ -180,6 +180,8 @@ for epoch in range(EPOCH):
         torch.save(model.state_dict(), "models/best_acc_model.pt")
 
 
+# Save loss array and acc array
+np.savez('information.npz', loss_arr=loss_arr, accu_arr=accu_arr)
 
     
 
