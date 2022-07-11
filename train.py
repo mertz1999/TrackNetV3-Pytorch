@@ -156,7 +156,7 @@ for epoch in range(EPOCH):
         valid_data  = valid_data.unsqueeze(0)
 
         # Prediction of validation data
-        valid_data.to(device)
+        valid_data = valid_data.to(device)
         valid_pred = model(valid_data)
 
         # Prepare prediction for calculate accuracy and other
