@@ -55,7 +55,7 @@ class VollyDataset(Dataset):
         selected_row = self.dataset.iloc[index]            
 
         # read video
-        cap = cv2.VideoCapture(selected_row['video_path'])
+        cap = cv2.VideoCapture(self.resolve_letter(selected_row['video_path']))
         vid_width  = cap. get(cv2. CAP_PROP_FRAME_WIDTH )
         vid_height = cap. get(cv2. CAP_PROP_FRAME_HEIGHT)
 
@@ -115,6 +115,17 @@ class VollyDataset(Dataset):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.resize(img, (self.width, self.height))
         return img
+    
+    # Change '\' to '/'
+    def resolve_letter(string):
+        result = ""
+        for letter in string:
+            if letter == '\\':
+                letter = '/'
+            result += letter
+        
+        return result
+                
 
 
 
