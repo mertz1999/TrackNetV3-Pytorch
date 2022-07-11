@@ -188,8 +188,8 @@ for epoch in range(EPOCH):
     print("\n")
     print("Loss      : {:.5f}".format(total_loss/len(volley_dataloader)))
     print("Accuracy  : {:.5f}".format(accuracy))
-    print("precision : {:.5f}".format(accuracy))
-    print("recall    : {:.5f}".format(accuracy))
+    print("precision : {:.5f}".format(precision))
+    print("recall    : {:.5f}".format(recall))
 
     # Save model
     torch.save(model.state_dict(), "models/last_model.pt")
