@@ -21,7 +21,7 @@ class VollyDataset(Dataset):
     # Define initial function
     def __init__(self, dataset_path, r=3, mag=1, width=512, height=288, name='training'):
         print(" ---------- Dataset is loaded ({}) ---------- ".format(name))
-        if dataset_path is str:
+        if type(dataset_path) is str:
             self.dataset = pd.read_csv(dataset_path)
         else:
             self.dataset = dataset_path
@@ -41,7 +41,7 @@ class VollyDataset(Dataset):
         self.transform = transforms.Compose([
                                     transforms.ToPILImage(),
                                     transforms.ToTensor(),
-                                    transforms.Normalize(mean=[0,0,0],std =[1,1,1])
+                                    transforms.Normalize(mean=[0.5,0.5,0.5],std =[0.5,0.5,0.5])
                                 ])
         
         self.transform_label = transforms.Compose([
