@@ -66,21 +66,6 @@ LOAD_MODEL   = args.load_weights
 
 print = Print()
 
-# Train test split
-data_train, data_val = train_test_split(pd.read_csv(dataset_path), test_size=0.03, random_state=5)
-
-# Load Train Dataset 
-volley_dataset    = VollyDataset(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
-volley_dataloader = DataLoader(volley_dataset, 
-                       batch_size= BATCH_SIZE,
-                       shuffle=True,
-                    #    num_workers=WORKERS,
-                    #    pin_memory= True
-                       )
-
-# Load Validation dataset
-volley_dataset_val = VollyDataset(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
-
 # Check CUDA
 CUDA = torch.cuda.is_available()
 print("CUDA Availability: ", CUDA)
@@ -89,6 +74,19 @@ if CUDA:
     device = torch.device('cuda:0')
 else:
     device = torch.device('cpu')
+
+# Train test split
+data_train, data_val = train_test_split(pd.read_csv(dataset_path), test_size=0.03, random_state=5)
+
+# Load Train Dataset 
+volley_dataset    = VollyDataset(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
+if CUDA:
+    volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True, num_workers=WORKERS,pin_memory= True)
+else:
+    volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True)
+
+# Load Validation dataset
+volley_dataset_val = VollyDataset(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
 
 
 # Loading Model
