@@ -55,7 +55,7 @@ class VollyDataset(Dataset):
         selected_row = self.dataset.iloc[index]            
 
         # read video
-        cap = cv2.VideoCapture(self.resolve_letter(selected_row['video_path']))
+        cap = cv2.VideoCapture(VollyDataset.resolve_letter(selected_row['video_path']))
         vid_width  = cap. get(cv2. CAP_PROP_FRAME_WIDTH )
         vid_height = cap. get(cv2. CAP_PROP_FRAME_HEIGHT)
 
