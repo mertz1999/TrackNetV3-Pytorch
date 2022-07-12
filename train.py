@@ -137,8 +137,8 @@ for epoch in range(START,EPOCH):
         output_pred = model(input_image)
 
         # Find loss 
-        loss = focal_loss.forward(output_pred, output_label)
-        total_loss += loss.cpu().item()
+        loss = focal_loss.forward(output_pred.cpu(), output_label.cpu())
+        total_loss += loss.item()
 
         # Backward
         optimizer.zero_grad()
