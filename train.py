@@ -28,12 +28,10 @@ options:
 Note: WE recommend you to use default opetions for first one.
 
 """
-
-from ast import arg
+from utils.volleydataset import VollyDataset, VollyDatasetV2
 from sklearn.model_selection import train_test_split
 from utils.focalloss import FocalLoss, FocalLoss2
 from utils.validation import outcome, evaluation
-from utils.volleydataset import VollyDataset
 from utils.res_tracknet import ResNet_Track
 from torch.utils.data import DataLoader
 from logging import raiseExceptions
@@ -82,19 +80,19 @@ else:
 data_train, data_val = train_test_split(pd.read_csv(dataset_path), test_size=0.03, random_state=5)
 
 # Load Train Dataset 
-volley_dataset    = VollyDataset(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
+volley_dataset    = VollyDatasetV2(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
 if CUDA:
     volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True, num_workers=WORKERS,pin_memory= True)
 else:
     volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True)
 
 # Load Validation dataset
-volley_dataset_val = VollyDataset(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
+volley_dataset_val = VollyDatasetV2(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
 
 
 # Loading Model
 model = ResNet_Track().to(device)
-model.last[6].bias.data.fill_(-3.2)
+# model.last[6].bias.data.fill_(-3.2)
 
 if LOAD_MODEL != 'None':
     try:
@@ -139,8 +137,8 @@ for epoch in range(START,EPOCH):
         output_pred = model(input_image)
 
         # Find loss 
-        loss = focal_loss.forward(output_pred.cpu(), output_label.cpu())
-        total_loss += loss.item()
+        loss = focal_loss.forward(output_pred, output_label)
+        total_loss += loss.cpu().item()
 
         # Backward
         optimizer.zero_grad()
