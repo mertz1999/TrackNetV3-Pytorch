@@ -194,6 +194,8 @@ for epoch in range(START,EPOCH):
     print("precision : {:.5f}".format(precision))
     print("recall    : {:.5f}".format(recall))
 
+    print(f"TP ({TP}), TN ({TN}), FP1 ({FP1}), FP2 ({FP2}), FN ({FN})")
+
     # Save model
     torch.save(model.state_dict(), os.path.join(SAVE_PATH,"last_model.pt"))
     if total_loss/len(volley_dataloader) < best_loss:
