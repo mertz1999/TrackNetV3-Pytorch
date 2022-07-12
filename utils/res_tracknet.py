@@ -139,7 +139,7 @@ class ResNet_Track(nn.Module):
     """
         This b block is combination of encoder and decoder parts of out model.
     """
-    def __init__(self, in_channels=3, pre_channel=64, structure=[3,3,4,3], num_filters=[16,32,64,128]):
+    def __init__(self, in_channels=4, pre_channel=64, structure=[3,3,4,3], num_filters=[16,32,64,128]):
         super(ResNet_Track, self).__init__()
         self.in_channels = in_channels
         self.structure   = structure
@@ -187,8 +187,8 @@ class ResNet_Track(nn.Module):
                 nn.BatchNorm2d(self.pre_channel),
                 nn.ReLU(),
 
-                nn.Conv2d(self.pre_channel, self.in_channels, kernel_size=1, stride=1, padding='same'),
-                nn.BatchNorm2d(self.in_channels),
+                nn.Conv2d(self.pre_channel, 1, kernel_size=1, stride=1, padding='same'),
+                nn.BatchNorm2d(1),
         )
 
     # Building block function
