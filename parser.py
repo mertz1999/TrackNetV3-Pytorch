@@ -14,8 +14,8 @@ parser.add_argument('--load_weights', type=str, default="None",
                     help='path to load pre-trained weights(default: None)')
 parser.add_argument('--save_path', type=str, default="./models",
                     help='path to load pre-trained weights(default: None)')
-parser.add_argument('--sigma', type=float, default=3,
-                    help='radius of circle generated in heat map(default: 3)')
+parser.add_argument('--sigma', type=float, default=1,
+                    help='radius of circle generated in heat map(default: 1)')
 parser.add_argument('--tol', type=float, default=10.0,
                     help='''acceptable tolerance of heat map circle center between 
                             ground truth and prediction(default: 10.0)''')
