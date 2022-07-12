@@ -66,7 +66,7 @@ SAVE_PATH    = args.save_path
 LOG_PATH     = args.log
 
 
-print = Print(LOG_PATH)
+print = Print(log_path=LOG_PATH)
 
 # Check CUDA
 CUDA = torch.cuda.is_available()
