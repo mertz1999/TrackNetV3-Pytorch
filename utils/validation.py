@@ -8,7 +8,7 @@ def outcome(y_pred, y_true, tol):
 	i = 0
 	TP = TN = FP1 = FP2 = FN = 0
 	while i < n:
-		for j in range(3):
+		for j in range(1):
 			if np.amax(y_pred[i][j]) == 0 and np.amax(y_true[i][j]) == 0:
 				TN += 1
 			elif np.amax(y_pred[i][j]) > 0 and np.amax(y_true[i][j]) == 0:
