@@ -6,9 +6,13 @@ parser.add_argument('--HEIGHT', type=int, default=288,
                     help='height of image input(default: 288)')
 parser.add_argument('--WIDTH', type=int, default=512,
                     help='width of image input(default: 512)')
+parser.add_argument('--start', type=int, default=0,
+                    help='Starting epoch(default: 0)')
 parser.add_argument('--epochs', type=int, default=50,
                     help='number of training epochs(default: 50)')
 parser.add_argument('--load_weights', type=str, default="None",
+                    help='path to load pre-trained weights(default: None)')
+parser.add_argument('--save_path', type=str, default="./models",
                     help='path to load pre-trained weights(default: None)')
 parser.add_argument('--sigma', type=float, default=3,
                     help='radius of circle generated in heat map(default: 3)')
@@ -26,4 +30,5 @@ parser.add_argument('--worker', type=int, default=1,
 parser.add_argument('--alpha', type=float, default=0.85,
                     help='Focal loss Alpha(default: 0.85)')
 parser.add_argument('--gamma', type=float, default=2,
-                    help='Focal loss gamma(default: 2)')    
+                    help='Focal loss gamma(default: 2)')
+

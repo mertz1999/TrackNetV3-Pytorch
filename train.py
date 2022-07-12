@@ -46,6 +46,7 @@ import pandas as pd
 import numpy as np
 import torch
 import time
+import os
 
 
 # Parameters
@@ -62,6 +63,8 @@ LR           = args.lr
 EPOCH        = args.epochs
 TOlERANCE    = args.tol
 LOAD_MODEL   = args.load_weights
+START        = args.start
+SAVE_PATH    = args.save_path
 
 
 print = Print()
@@ -118,7 +121,7 @@ best_accuracy = 0.0
 
 # Training loop
 torch.autograd.set_detect_anomaly(True)
-for epoch in range(EPOCH):
+for epoch in range(START,EPOCH):
     model.train()
 
     print(40*'='+f" {epoch+1}/{EPOCH} "+"="*40)
@@ -192,13 +195,13 @@ for epoch in range(EPOCH):
     print("recall    : {:.5f}".format(recall))
 
     # Save model
-    torch.save(model.state_dict(), "models/last_model.pt")
+    torch.save(model.state_dict(), os.path.join(SAVE_PATH,"last_model.pt"))
     if total_loss/len(volley_dataloader) < best_loss:
         best_loss = total_loss/len(volley_dataloader)
-        torch.save(model.state_dict(), "models/best_loss_model.pt")
+        torch.save(model.state_dict(), os.path.join(SAVE_PATH,"best_loss_model.pt"))
     if accuracy > best_accuracy:
         best_accuracy = accuracy
-        torch.save(model.state_dict(), "models/best_acc_model.pt")
+        torch.save(model.state_dict(), os.path.join(SAVE_PATH,"best_acc_model.pt"))
 
 
 # Save loss array and acc array
