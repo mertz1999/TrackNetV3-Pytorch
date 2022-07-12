@@ -63,9 +63,10 @@ TOlERANCE    = args.tol
 LOAD_MODEL   = args.load_weights
 START        = args.start
 SAVE_PATH    = args.save_path
+LOG_PATH     = args.log
 
 
-print = Print()
+print = Print(LOG_PATH)
 
 # Check CUDA
 CUDA = torch.cuda.is_available()
