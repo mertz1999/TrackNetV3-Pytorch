@@ -16,7 +16,7 @@ parser.add_argument('--save_path', type=str, default="./models",
                     help='path to load pre-trained weights(default: None)')
 parser.add_argument('--log', type=str, default="./log.txt",
                     help='path to log file(default: ./log.txt)')
-parser.add_argument('--sigma', type=float, default=1,
+parser.add_argument('--sigma', type=float, default=3,
                     help='radius of circle generated in heat map(default: 1)')
 parser.add_argument('--tol', type=float, default=10.0,
                     help='''acceptable tolerance of heat map circle center between 
@@ -31,6 +31,6 @@ parser.add_argument('--worker', type=int, default=1,
                     help='Number of worker to increase speed (default: 1')
 parser.add_argument('--alpha', type=float, default=0.85,
                     help='Focal loss Alpha(default: 0.85)')
-parser.add_argument('--gamma', type=float, default=2,
+parser.add_argument('--gamma', type=float, default=1,
                     help='Focal loss gamma(default: 2)')
 
