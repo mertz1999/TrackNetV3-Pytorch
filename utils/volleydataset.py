@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision import transforms
-from generate_heatmap import genHeatMap
-from motion_channel import motion_channel, motion_channelV2
+from .generate_heatmap import genHeatMap
+from .motion_channel import motion_channel, motion_channelV2
 from torch.utils.data import Dataset, DataLoader
 
 
