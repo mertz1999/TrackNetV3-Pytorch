@@ -16,15 +16,15 @@ parser.add_argument('--save_path', type=str, default="./models",
                     help='path to load pre-trained weights(default: None)')
 parser.add_argument('--log', type=str, default="./log.txt",
                     help='path to log file(default: ./log.txt)')
-parser.add_argument('--sigma', type=float, default=3,
-                    help='radius of circle generated in heat map(default: 1)')
+parser.add_argument('--sigma', type=float, default=5,
+                    help='radius of circle generated in heat map(default: 5)')
 parser.add_argument('--tol', type=float, default=10.0,
                     help='''acceptable tolerance of heat map circle center between 
                             ground truth and prediction(default: 10.0)''')
 parser.add_argument('--batch_size', type=int, default=2,
                     help='batch size(default: 2)')
-parser.add_argument('--lr', type=float, default=0.01,
-                    help='initial learning rate(default: 0.01)')
+parser.add_argument('--lr', type=float, default=1,
+                    help='initial learning rate(default: 1)')
 parser.add_argument('--dataset', type=str, default='./merged_dataset.csv',
                     help='Path of dataset (merged dataset)')
 parser.add_argument('--worker', type=int, default=1,
@@ -32,5 +32,5 @@ parser.add_argument('--worker', type=int, default=1,
 parser.add_argument('--alpha', type=float, default=0.85,
                     help='Focal loss Alpha(default: 0.85)')
 parser.add_argument('--gamma', type=float, default=1,
-                    help='Focal loss gamma(default: 2)')
+                    help='Focal loss gamma(default: 1)')
 

@@ -15,14 +15,14 @@ options:
   --WIDTH               width of image input(default: 512)
   --epochs              number of training epochs(default: 50)
   --load_weights        path to load pre-trained weights(default: None)
-  --sigma               radius of circle generated in heat map(default: 3)
+  --sigma               radius of circle generated in heat map(default: 5)
   --tol                 acceptable tolerance of heat map circle center between ground truth and prediction(default: 10.0)
   --batch_size          batch size(default: 2)
-  --lr                  initial learning rate(default: 0.01)
+  --lr                  initial learning rate(default: 1)
   --dataset DATASET     Path of dataset (merged dataset)
-  --worker WORKER       Number of worker to increase speed (default: 1
+  --worker WORKER       Number of worker to increase speed (default: 1)
   --alpha ALPHA         Focal loss Alpha(default: 0.85)
-  --gamma GAMMA         Focal loss gamma(default: 2)
+  --gamma GAMMA         Focal loss gamma(default: 1)
 
 
 Note: WE recommend you to use default opetions for first one.
