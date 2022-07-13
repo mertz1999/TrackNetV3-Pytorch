@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision import transforms
-from .generate_heatmap import genHeatMap
-from .motion_channel import motion_channel
+from generate_heatmap import genHeatMap
+from motion_channel import motion_channel, motion_channelV2
 from torch.utils.data import Dataset, DataLoader
 
 
@@ -171,7 +171,7 @@ class VollyDatasetV2(Dataset):
         self.transform = transforms.Compose([
                                     transforms.ToPILImage(),
                                     transforms.ToTensor(),
-                                    transforms.Normalize(mean=[0.5,0.5,0.5,0.5],std =[0.5,0.5,0.5,0.5])
+                                    transforms.Normalize(mean=[115.,115.,115.,0.5],std =[55.,55.,55.,10.])
                                 ])
         
         self.transform_label = transforms.Compose([
@@ -202,14 +202,16 @@ class VollyDatasetV2(Dataset):
         _, image_3 = cap.read()
 
         # Preprocess path
-        image_4 = motion_channel(image_1, image_2, image_3);image_4 = np.resize(image_4, (self.height, self.width))
+        image_4 = motion_channelV2(image_1, image_2, image_3)
+        image_4 = cv2.resize(image_4, (self.width, self.height))
+
         image_1, image_2, image_3 = map(self.base_transform, [image_1, image_2, image_3])
 
         # Label arrays
-        label_2 = genHeatMap(self.width, 
+        label_3 = genHeatMap(self.width, 
                              self.height, 
-                             (selected_row['cord_2_x']*self.width)//vid_width,
-                             (selected_row['cord_2_y']*self.height)//vid_height,self.r,self.mag
+                             (selected_row['cord_3_x']*self.width)//vid_width,
+                             (selected_row['cord_3_y']*self.height)//vid_height,self.r,self.mag
                              )
         
         # Apply transform to inputs images
@@ -219,7 +221,7 @@ class VollyDatasetV2(Dataset):
 
         # Apply transform to label images
         label_images        = np.zeros((self.height, self.width, 1), dtype=np.uint8)
-        label_images[:,:,0] = label_2
+        label_images[:,:,0] = label_3
         label_images        = self.transform_label(label_images)
 
         
@@ -252,7 +254,7 @@ class VollyDatasetV2(Dataset):
 
 
 ######### --------------- TEST --------------- #########
-# volley_dataloader = DataLoader(VollyDataset('merged_dataset.csv'), 
+# volley_dataloader = DataLoader(VollyDatasetV2('merged_dataset.csv', r=5), 
 #                        batch_size= 5,
 #                        shuffle=True,
 #                     #    num_workers=1,
@@ -263,15 +265,14 @@ class VollyDatasetV2(Dataset):
 # for i,j in volley_dataloader:
 #     img   = i[0].numpy()
 #     label = j[0].numpy()
-#     for k in range(3):
+#     for k in range(4):
 #         X = img[k]
-#         Y = label[k]
+#         Y = label[0]
 #         plt.subplot(1,2, 1)
-#         plt.imshow(X+Y*255)
+#         plt.imshow(X)
 #         plt.subplot(1,2, 2)
 #         plt.imshow(Y)
 #         plt.show()
-    # print(i.shape, j.shape);exit()
 
 # X = next(iter(volley_dataloader))
 # print(X.shape)
