@@ -248,26 +248,26 @@ class VollyDatasetV2(Dataset):
 
 
 ######### --------------- TEST --------------- #########
-volley_dataloader = DataLoader(VollyDatasetV2('merged_dataset.csv', r=5), 
-                       batch_size= 5,
-                       shuffle=True,
-                    #    num_workers=1,
-                    #    pin_memory= True
-                       )
+# volley_dataloader = DataLoader(VollyDatasetV2('merged_dataset.csv', r=5), 
+#                        batch_size= 5,
+#                        shuffle=True,
+#                     #    num_workers=1,
+#                     #    pin_memory= True
+#                        )
 
 
-for i,j in volley_dataloader:
-    img   = i[0].numpy()
-    label = j[0].numpy()
-    # print(i.shape, j.shape);exit()
-    for k in range(4):
-        X = img[k]
-        Y = label[0]
-        plt.subplot(1,2, 1)
-        plt.imshow(X)
-        plt.subplot(1,2, 2)
-        plt.imshow(Y)
-        plt.show()
+# for i,j in volley_dataloader:
+#     img   = i[0].numpy()
+#     label = j[0].numpy()
+#     # print(i.shape, j.shape);exit()
+#     for k in range(4):
+#         X = img[k]
+#         Y = label[0]
+#         plt.subplot(1,2, 1)
+#         plt.imshow(X)
+#         plt.subplot(1,2, 2)
+#         plt.imshow(Y)
+#         plt.show()
 
 # X = next(iter(volley_dataloader))
 # print(X.shape)
