@@ -235,7 +235,7 @@ class ResNet_Track(nn.Module):
 
         return torch.sigmoid(output)
 
-
+        
 # dummy = torch.ones((1, 3, 288, 512))
 # model = ResNet_Track()
 # print(model(dummy).shape)

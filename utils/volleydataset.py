@@ -1,5 +1,6 @@
 import os
 import cv2
+import torch
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -103,7 +104,6 @@ class VollyDataset(Dataset):
         label_images[:,:,0] = label_1; label_images[:,:,1] = label_2; label_images[:,:,2] = label_3
         label_images        = self.transform_label(label_images)
 
-        
         return input_images, label_images
 
 
@@ -169,15 +169,9 @@ class VollyDatasetV2(Dataset):
         # Define Transform list 
         # --- Define Transforms
         self.transform = transforms.Compose([
-                                    transforms.ToPILImage(),
                                     transforms.ToTensor(),
-                                    transforms.Normalize(mean=[115.,115.,115.,0.5],std =[55.,55.,55.,10.])
                                 ])
         
-        self.transform_label = transforms.Compose([
-                                    transforms.ToPILImage(),
-                                    transforms.ToTensor()
-                                ])
 
     # getitem function
     def __getitem__(self, index):
@@ -220,9 +214,9 @@ class VollyDatasetV2(Dataset):
         input_images        = self.transform(input_images)
 
         # Apply transform to label images
-        label_images        = np.zeros((self.height, self.width, 1), dtype=np.uint8)
-        label_images[:,:,0] = label_3
-        label_images        = self.transform_label(label_images)
+        label_images = torch.as_tensor(np.array(label_3), dtype=torch.float64)
+        label_images = label_images.unsqueeze(0)
+
 
         
         return input_images, label_images
@@ -254,25 +248,26 @@ class VollyDatasetV2(Dataset):
 
 
 ######### --------------- TEST --------------- #########
-# volley_dataloader = DataLoader(VollyDatasetV2('merged_dataset.csv', r=5), 
-#                        batch_size= 5,
-#                        shuffle=True,
-#                     #    num_workers=1,
-#                     #    pin_memory= True
-#                        )
+volley_dataloader = DataLoader(VollyDatasetV2('merged_dataset.csv', r=5), 
+                       batch_size= 5,
+                       shuffle=True,
+                    #    num_workers=1,
+                    #    pin_memory= True
+                       )
 
 
-# for i,j in volley_dataloader:
-#     img   = i[0].numpy()
-#     label = j[0].numpy()
-#     for k in range(4):
-#         X = img[k]
-#         Y = label[0]
-#         plt.subplot(1,2, 1)
-#         plt.imshow(X)
-#         plt.subplot(1,2, 2)
-#         plt.imshow(Y)
-#         plt.show()
+for i,j in volley_dataloader:
+    img   = i[0].numpy()
+    label = j[0].numpy()
+    # print(i.shape, j.shape);exit()
+    for k in range(4):
+        X = img[k]
+        Y = label[0]
+        plt.subplot(1,2, 1)
+        plt.imshow(X)
+        plt.subplot(1,2, 2)
+        plt.imshow(Y)
+        plt.show()
 
 # X = next(iter(volley_dataloader))
 # print(X.shape)
