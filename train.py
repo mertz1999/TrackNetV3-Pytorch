@@ -15,25 +15,23 @@ options:
   --WIDTH               width of image input(default: 512)
   --epochs              number of training epochs(default: 50)
   --load_weights        path to load pre-trained weights(default: None)
-  --sigma               radius of circle generated in heat map(default: 3)
+  --sigma               radius of circle generated in heat map(default: 5)
   --tol                 acceptable tolerance of heat map circle center between ground truth and prediction(default: 10.0)
   --batch_size          batch size(default: 2)
-  --lr                  initial learning rate(default: 0.01)
+  --lr                  initial learning rate(default: 1)
   --dataset DATASET     Path of dataset (merged dataset)
-  --worker WORKER       Number of worker to increase speed (default: 1
+  --worker WORKER       Number of worker to increase speed (default: 1)
   --alpha ALPHA         Focal loss Alpha(default: 0.85)
-  --gamma GAMMA         Focal loss gamma(default: 2)
+  --gamma GAMMA         Focal loss gamma(default: 1)
 
 
 Note: WE recommend you to use default opetions for first one.
 
 """
-
-from ast import arg
+from utils.volleydataset import VollyDataset, VollyDatasetV2
 from sklearn.model_selection import train_test_split
 from utils.focalloss import FocalLoss, FocalLoss2
 from utils.validation import outcome, evaluation
-from utils.volleydataset import VollyDataset
 from utils.res_tracknet import ResNet_Track
 from torch.utils.data import DataLoader
 from logging import raiseExceptions
@@ -65,9 +63,10 @@ TOlERANCE    = args.tol
 LOAD_MODEL   = args.load_weights
 START        = args.start
 SAVE_PATH    = args.save_path
+LOG_PATH     = args.log
 
 
-print = Print()
+print = Print(log_path=LOG_PATH)
 
 # Check CUDA
 CUDA = torch.cuda.is_available()
@@ -82,19 +81,19 @@ else:
 data_train, data_val = train_test_split(pd.read_csv(dataset_path), test_size=0.03, random_state=5)
 
 # Load Train Dataset 
-volley_dataset    = VollyDataset(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
+volley_dataset    = VollyDatasetV2(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
 if CUDA:
     volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True, num_workers=WORKERS,pin_memory= True)
 else:
     volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True)
 
 # Load Validation dataset
-volley_dataset_val = VollyDataset(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
+volley_dataset_val = VollyDatasetV2(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
 
 
 # Loading Model
 model = ResNet_Track().to(device)
-model.last[6].bias.data.fill_(-3.2)
+# model.last[6].bias.data.fill_(-3.2)
 
 if LOAD_MODEL != 'None':
     try:

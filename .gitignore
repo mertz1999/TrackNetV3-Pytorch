@@ -2,3 +2,5 @@ tracknet_venv/*
 games/*
 utils/__pycache__/*
 __pycache__/*
+models/*
+log.txt
