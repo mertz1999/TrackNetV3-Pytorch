@@ -3,3 +3,4 @@ games/*
 utils/__pycache__/*
 __pycache__/*
 models/*
+log.txt
