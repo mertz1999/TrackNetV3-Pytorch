@@ -1,4 +1,13 @@
+"""
+Marge all csv file for pass it to train.py 
+
+positional arguments:
+  games_path  Path to games folder ("./games")
+"""
+
+
 import pandas as pd 
+import argparse
 import os
 
 ## -------------------- Update Dataframe function --------------- ##
@@ -21,9 +30,15 @@ def update_df(item, id_):
     
 ## -------------------------------------------------------------- ##
 
+# Instantiate the parser
+parser = argparse.ArgumentParser()
+
+parser.add_argument('games_path', type=str,
+                    help='Path to games folder ("./games")')
+args = parser.parse_args()
 
 # games path
-game_path = 'games'
+game_path = args.games_path
 
 # find total game id in that folder
 game_ids = os.listdir(game_path)
