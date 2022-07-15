@@ -1,6 +1,12 @@
 """
 Use this file to generate video with predicted labels.
 
+positional arguments:
+  video_path  Path to video file
+  model_path  Path to model file
+  Width       WIDTH
+  Height      HEIGHT
+
 """
 
 from utils.res_tracknet import ResNet_Track
@@ -8,6 +14,7 @@ from utils.motion_channel import motion_channel, motion_channelV2
 from torchvision import transforms
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
 import torch
 import time
 import cv2
@@ -22,11 +29,27 @@ def base_transform(img):
 
 ##################################################################
 
+# Instantiate the parser
+parser = argparse.ArgumentParser()
+
+parser.add_argument('video_path', type=str,
+                    help='Path to video file')
+parser.add_argument('model_path', type=str,
+                    help='Path to model file')
+parser.add_argument('Width', type=int,
+                    help='WIDTH')
+parser.add_argument('Height', type=int,
+                    help='HEIGHT')
+
+args = parser.parse_args()
+
+
 # Parameters
-VIDEO_PATH = "./games/8/8_02.mp4"
-MODEL_PATH = "./models/last_model (20).pt"
-WIDTH      = 512
-HEIGHT     = 288
+VIDEO_PATH = args.video_path
+MODEL_PATH = args.model_path
+WIDTH      = args.Width
+HEIGHT     = args.Height
+
 OUTPUT     = "."+VIDEO_PATH.split(".")[-2]+"_predicted.mp4"
 
 
@@ -70,10 +93,9 @@ out_vid = cv2.VideoWriter(OUTPUT, fourcc, frame_rate, (width, height),True)
 
 # Read frame by frame
 frame_idx = 2
+start_time = time.time()
 while(frame_idx <= total_frame-2):
     print(f'Reading Frame {frame_idx}')
-    
-    start_time = time.time()
 
     # Third image channel
     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
@@ -143,12 +165,9 @@ while(frame_idx <= total_frame-2):
 
     out_vid.write(image3_cp)
 
-    # cv2.imshow('frame',image3_cp)
-    # if cv2.waitKey(1) & 0xFF == ord('q'):
-    #     break
-
     frame_idx += 1
 
+print("\nTotal Time: ", time.time() - start_time)
 out_vid.release()
 cap.release()
 cv2.destroyAllWindows()
