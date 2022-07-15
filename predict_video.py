@@ -40,6 +40,8 @@ parser.add_argument('Width', type=int,
                     help='WIDTH')
 parser.add_argument('Height', type=int,
                     help='HEIGHT')
+parser.add_argument('--show_map', type=bool,
+                    help='show map?', default=True)
 
 args = parser.parse_args()
 
@@ -49,6 +51,7 @@ VIDEO_PATH = args.video_path
 MODEL_PATH = args.model_path
 WIDTH      = args.Width
 HEIGHT     = args.Height
+show_map   = args.show_map
 
 OUTPUT     = "."+VIDEO_PATH.split(".")[-2]+"_predicted.mp4"
 
@@ -134,6 +137,7 @@ while(frame_idx <= total_frame-2):
     pred_images = pred_images.cpu().detach()
     pred_images = pred_images.squeeze(0)
     pred_images = pred_images.numpy()
+    out_image   = pred_images[0].copy()
     pred_images = pred_images > 0.5
     pred_images = pred_images[0] * 255
     pred_images = pred_images.astype(np.uint8)
@@ -162,6 +166,19 @@ while(frame_idx <= total_frame-2):
     
 
     cv2.circle(image3_cp, (cx_pred, cy_pred), 5, (0,0,255), -1)
+
+    # Write output on video
+    if show_map:
+        out_width  = int(width // 4)
+        out_height = int((out_width * height) // width)
+        
+        out_image = out_image * 255
+        out_image = out_image.astype(np.uint8)
+        out_image = cv2.resize(out_image, (out_width, out_height))
+
+        out_image = cv2.applyColorMap(out_image, cv2.COLORMAP_VIRIDIS)
+
+        image3_cp[-out_height:height, 0:out_width, :] = out_image
 
     out_vid.write(image3_cp)
 
