@@ -178,10 +178,10 @@ for epoch in range(START,EPOCH):
         FN  += fn
 
     # Update Learning Rate
-    if epoch > EPOCH/2:
-        for g in optimizer.param_groups:
-            g['lr'] = LR / 10
-            print('\nLearning Rate Updated to ({})'.format(g["lr"]))
+    # if epoch > EPOCH/2:
+    #     for g in optimizer.param_groups:
+    #         g['lr'] = LR / 10
+    #         print('\nLearning Rate Updated to ({})'.format(g["lr"]))
 
     
     # Find Accuracy, Recall and preciesion
