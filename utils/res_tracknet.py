@@ -188,7 +188,7 @@ class ResNet_Track(nn.Module):
                 nn.ReLU(),
 
                 nn.Conv2d(self.pre_channel, 3, kernel_size=1, stride=1, padding='same'),
-                nn.BatchNorm2d(1),
+                nn.BatchNorm2d(3),
         )
 
     # Building block function
