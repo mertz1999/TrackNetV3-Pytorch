@@ -60,7 +60,7 @@ results = {
 
 for result in results:
     fig, ax = plt.subplots()
-    ax.plot(range(len(results[result])), results[result], 'b')
+    ax.plot(range(1,len(results[result])+1), results[result], 'b')
 
     ax.set(xlabel='Epoch' if result!="Batch_loss" else 'Batches', ylabel='Values', title=f'{result} Values' )
 
