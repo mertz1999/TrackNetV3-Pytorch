@@ -202,6 +202,18 @@ class VollyDatasetV2(Dataset):
         image_1, image_2, image_3 = map(self.base_transform, [image_1, image_2, image_3])
 
         # Label arrays
+        label_1 = genHeatMap(self.width, 
+                             self.height, 
+                             (selected_row['cord_1_x']*self.width)//vid_width,
+                             (selected_row['cord_1_y']*self.height)//vid_height,self.r,self.mag
+                             )
+        
+        label_2 = genHeatMap(self.width, 
+                             self.height, 
+                             (selected_row['cord_2_x']*self.width)//vid_width,
+                             (selected_row['cord_2_y']*self.height)//vid_height,self.r,self.mag
+                             )
+        
         label_3 = genHeatMap(self.width, 
                              self.height, 
                              (selected_row['cord_3_x']*self.width)//vid_width,
@@ -214,9 +226,16 @@ class VollyDatasetV2(Dataset):
         input_images        = self.transform(input_images)
 
         # Apply transform to label images
-        label_images = torch.as_tensor(np.array(label_3), dtype=torch.float64)
-        label_images = label_images.unsqueeze(0)
+        label_images_1 = torch.as_tensor(np.array(label_1), dtype=torch.float64)
+        label_images_1 = label_images_1.unsqueeze(0)
 
+        label_images_2 = torch.as_tensor(np.array(label_2), dtype=torch.float64)
+        label_images_2 = label_images_2.unsqueeze(0)
+
+        label_images_3 = torch.as_tensor(np.array(label_3), dtype=torch.float64)
+        label_images_3 = label_images_3.unsqueeze(0)
+
+        label_images   = torch.cat((label_images_1,label_images_2,label_images_3), dim=0)
 
         
         return input_images, label_images
