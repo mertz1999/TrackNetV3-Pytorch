@@ -1,50 +1,409 @@
-CUDA Availability:  False
+CUDA Availability:  True
 ======================================== 1/50 ========================================
-Epoch: [1/50]  ,Batch index: [1/36402], Loss Value:[0.04921502], time: [5.1519999504089355]
+Epoch: [1/50]  ,Batch index: [1/2276], Loss Value:[0.49133193], time: [12.528221130371094]
+Epoch: [1/50]  ,Batch index: [201/2276], Loss Value:[0.13402729], time: [1.3558385372161865]
+Epoch: [1/50]  ,Batch index: [401/2276], Loss Value:[0.04561498], time: [1.309241771697998]
+Epoch: [1/50]  ,Batch index: [601/2276], Loss Value:[0.01582766], time: [1.3591394424438477]
+Epoch: [1/50]  ,Batch index: [801/2276], Loss Value:[0.00593774], time: [1.401416301727295]
+Epoch: [1/50]  ,Batch index: [1001/2276], Loss Value:[0.00291397], time: [1.4503650665283203]
+Epoch: [1/50]  ,Batch index: [1201/2276], Loss Value:[0.00226892], time: [1.5065851211547852]
+Epoch: [1/50]  ,Batch index: [1401/2276], Loss Value:[0.00143932], time: [1.4240548610687256]
+Epoch: [1/50]  ,Batch index: [1601/2276], Loss Value:[0.00138828], time: [1.3667681217193604]
+Epoch: [1/50]  ,Batch index: [1801/2276], Loss Value:[0.00101379], time: [1.2852184772491455]
+Epoch: [1/50]  ,Batch index: [2001/2276], Loss Value:[0.00082761], time: [1.3451075553894043]
+Epoch: [1/50]  ,Batch index: [2201/2276], Loss Value:[0.00057731], time: [1.4464271068572998]
 
 
-Loss      : 0.00000
-Accuracy  : 0.00000
-precision : 0.00000
-recall    : 0.00000
+Loss      : 0.03209
+Accuracy  : 0.79751
+precision : 0.93797
+recall    : 0.80543
+TP (741), TN (157), FP1 (28), FP2 (21), FN (179)
 ======================================== 2/50 ========================================
-Epoch: [2/50]  ,Batch index: [1/36402], Loss Value:[0.05026696], time: [4.302004098892212]
+Epoch: [2/50]  ,Batch index: [1/2276], Loss Value:[0.00069804], time: [1.4495823383331299]
+Epoch: [2/50]  ,Batch index: [201/2276], Loss Value:[0.00069342], time: [1.352618932723999]
+Epoch: [2/50]  ,Batch index: [401/2276], Loss Value:[0.00088109], time: [1.1928963661193848]
+Epoch: [2/50]  ,Batch index: [601/2276], Loss Value:[0.00064613], time: [1.3895344734191895]
+Epoch: [2/50]  ,Batch index: [801/2276], Loss Value:[0.00055236], time: [1.237001657485962]
+Epoch: [2/50]  ,Batch index: [1001/2276], Loss Value:[0.00038829], time: [1.4030444622039795]
+Epoch: [2/50]  ,Batch index: [1201/2276], Loss Value:[0.00047845], time: [1.3693504333496094]
+Epoch: [2/50]  ,Batch index: [1401/2276], Loss Value:[0.00040081], time: [1.2618958950042725]
+Epoch: [2/50]  ,Batch index: [1601/2276], Loss Value:[0.00075408], time: [1.4044551849365234]
+Epoch: [2/50]  ,Batch index: [1801/2276], Loss Value:[0.00034236], time: [1.2960970401763916]
+Epoch: [2/50]  ,Batch index: [2001/2276], Loss Value:[0.00065740], time: [1.2063562870025635]
+Epoch: [2/50]  ,Batch index: [2201/2276], Loss Value:[0.00043189], time: [1.4317626953125]
 
 
-Loss      : 0.00000
-Accuracy  : 0.00000
-precision : 0.00000
-recall    : 0.00000
+Loss      : 0.00056
+Accuracy  : 0.86501
+precision : 0.94780
+recall    : 0.88420
+TP (817), TN (157), FP1 (24), FP2 (21), FN (107)
 ======================================== 3/50 ========================================
-Epoch: [3/50]  ,Batch index: [1/36402], Loss Value:[0.04910422], time: [4.330000400543213]
+Epoch: [3/50]  ,Batch index: [1/2276], Loss Value:[0.00090109], time: [1.360079050064087]
+Epoch: [3/50]  ,Batch index: [201/2276], Loss Value:[0.00042734], time: [1.5465245246887207]
+Epoch: [3/50]  ,Batch index: [401/2276], Loss Value:[0.00044509], time: [1.4169096946716309]
+Epoch: [3/50]  ,Batch index: [601/2276], Loss Value:[0.00042196], time: [1.213209867477417]
+Epoch: [3/50]  ,Batch index: [801/2276], Loss Value:[0.00060503], time: [1.2699358463287354]
+Epoch: [3/50]  ,Batch index: [1001/2276], Loss Value:[0.00039178], time: [1.481109380722046]
+Epoch: [3/50]  ,Batch index: [1201/2276], Loss Value:[0.00044295], time: [1.4865224361419678]
+Epoch: [3/50]  ,Batch index: [1401/2276], Loss Value:[0.00038677], time: [1.5957584381103516]
+Epoch: [3/50]  ,Batch index: [1601/2276], Loss Value:[0.00030141], time: [1.5481643676757812]
+Epoch: [3/50]  ,Batch index: [1801/2276], Loss Value:[0.00051986], time: [1.2621335983276367]
+Epoch: [3/50]  ,Batch index: [2001/2276], Loss Value:[0.00034559], time: [1.3156957626342773]
+Epoch: [3/50]  ,Batch index: [2201/2276], Loss Value:[0.00036607], time: [1.6176555156707764]
 
 
-Loss      : 0.00000
-Accuracy  : 0.00000
-precision : 0.00000
-recall    : 0.00000
+Loss      : 0.00042
+Accuracy  : 0.87922
+precision : 0.97857
+recall    : 0.87447
+TP (822), TN (168), FP1 (8), FP2 (10), FN (118)
+
+CUDA Availability:  True
+
+Model (./gdrive/MyDrive/last_model.pt) is Loaded
 ======================================== 4/50 ========================================
-Epoch: [4/50]  ,Batch index: [1/36402], Loss Value:[0.04725271], time: [4.449000835418701]
+Epoch: [4/50]  ,Batch index: [1/2276], Loss Value:[0.00031849], time: [11.921015501022339]
+Epoch: [4/50]  ,Batch index: [201/2276], Loss Value:[0.00035616], time: [1.4738719463348389]
+Epoch: [4/50]  ,Batch index: [401/2276], Loss Value:[0.00029679], time: [1.269092082977295]
+Epoch: [4/50]  ,Batch index: [601/2276], Loss Value:[0.00025812], time: [1.3084690570831299]
+Epoch: [4/50]  ,Batch index: [801/2276], Loss Value:[0.00045112], time: [1.3658006191253662]
+Epoch: [4/50]  ,Batch index: [1001/2276], Loss Value:[0.00028905], time: [1.4566888809204102]
+Epoch: [4/50]  ,Batch index: [1201/2276], Loss Value:[0.00036904], time: [1.1922318935394287]
+Epoch: [4/50]  ,Batch index: [1401/2276], Loss Value:[0.00053510], time: [1.2776637077331543]
+Epoch: [4/50]  ,Batch index: [1601/2276], Loss Value:[0.00029288], time: [1.2969849109649658]
+Epoch: [4/50]  ,Batch index: [1801/2276], Loss Value:[0.00059676], time: [1.2870173454284668]
+Epoch: [4/50]  ,Batch index: [2001/2276], Loss Value:[0.00029467], time: [1.527571201324463]
+Epoch: [4/50]  ,Batch index: [2201/2276], Loss Value:[0.00079164], time: [1.5475983619689941]
 
 
-Loss      : 0.00000
-Accuracy  : 0.00000
-precision : 0.00000
-recall    : 0.00000
+Loss      : 0.00036
+Accuracy  : 0.88366
+precision : 0.95776
+recall    : 0.89925
+TP (839), TN (156), FP1 (15), FP2 (22), FN (94)
 ======================================== 5/50 ========================================
-Epoch: [5/50]  ,Batch index: [1/36402], Loss Value:[0.04966099], time: [4.454999923706055]
+Epoch: [5/50]  ,Batch index: [1/2276], Loss Value:[0.00022168], time: [1.4482622146606445]
+Epoch: [5/50]  ,Batch index: [201/2276], Loss Value:[0.00023054], time: [1.288771629333496]
+Epoch: [5/50]  ,Batch index: [401/2276], Loss Value:[0.00022557], time: [1.6890888214111328]
+Epoch: [5/50]  ,Batch index: [601/2276], Loss Value:[0.00026801], time: [1.2697110176086426]
+Epoch: [5/50]  ,Batch index: [801/2276], Loss Value:[0.00031692], time: [1.0445287227630615]
+Epoch: [5/50]  ,Batch index: [1001/2276], Loss Value:[0.00021408], time: [1.5359578132629395]
+Epoch: [5/50]  ,Batch index: [1201/2276], Loss Value:[0.00050204], time: [1.64359712600708]
+Epoch: [5/50]  ,Batch index: [1401/2276], Loss Value:[0.00027890], time: [1.7385878562927246]
+Epoch: [5/50]  ,Batch index: [1601/2276], Loss Value:[0.00026074], time: [1.2610723972320557]
+Epoch: [5/50]  ,Batch index: [1801/2276], Loss Value:[0.00025655], time: [1.1928954124450684]
+Epoch: [5/50]  ,Batch index: [2001/2276], Loss Value:[0.00024766], time: [1.2917654514312744]
+Epoch: [5/50]  ,Batch index: [2201/2276], Loss Value:[0.00029740], time: [1.3721332550048828]
 
 
-Loss      : 0.00000
-Accuracy  : 0.00000
-precision : 0.00000
-recall    : 0.00000
+Loss      : 0.00032
+Accuracy  : 0.90142
+precision : 0.96413
+recall    : 0.91587
+TP (860), TN (155), FP1 (9), FP2 (23), FN (79)
 ======================================== 6/50 ========================================
-Epoch: [6/50]  ,Batch index: [1/36402], Loss Value:[0.05014125], time: [4.751999855041504]
+Epoch: [6/50]  ,Batch index: [1/2276], Loss Value:[0.00023343], time: [1.4281806945800781]
+Epoch: [6/50]  ,Batch index: [201/2276], Loss Value:[0.00023006], time: [1.1785717010498047]
+Epoch: [6/50]  ,Batch index: [401/2276], Loss Value:[0.00016943], time: [1.275449514389038]
+Epoch: [6/50]  ,Batch index: [601/2276], Loss Value:[0.00027799], time: [1.321763038635254]
+Epoch: [6/50]  ,Batch index: [801/2276], Loss Value:[0.00016750], time: [1.243335485458374]
+Epoch: [6/50]  ,Batch index: [1001/2276], Loss Value:[0.00020501], time: [1.2968494892120361]
+Epoch: [6/50]  ,Batch index: [1201/2276], Loss Value:[0.00033426], time: [1.7383248805999756]
+Epoch: [6/50]  ,Batch index: [1401/2276], Loss Value:[0.00035678], time: [1.1104576587677002]
+Epoch: [6/50]  ,Batch index: [1601/2276], Loss Value:[0.00020658], time: [1.5927116870880127]
+Epoch: [6/50]  ,Batch index: [1801/2276], Loss Value:[0.00020543], time: [1.2958509922027588]
+Epoch: [6/50]  ,Batch index: [2001/2276], Loss Value:[0.00029665], time: [1.1731607913970947]
+Epoch: [6/50]  ,Batch index: [2201/2276], Loss Value:[0.00025375], time: [1.0823960304260254]
 
 
-Loss      : 0.00000
-Accuracy  : 0.00000
-precision : 0.00000
-recall    : 0.00000
+Loss      : 0.00029
+Accuracy  : 0.90142
+precision : 0.97924
+recall    : 0.90127
+TP (849), TN (166), FP1 (6), FP2 (12), FN (93)
 ======================================== 7/50 ========================================
+Epoch: [7/50]  ,Batch index: [1/2276], Loss Value:[0.00030185], time: [1.2788822650909424]
+Epoch: [7/50]  ,Batch index: [201/2276], Loss Value:[0.00023523], time: [1.3025367259979248]
+Epoch: [7/50]  ,Batch index: [401/2276], Loss Value:[0.00036483], time: [1.246488094329834]
+Epoch: [7/50]  ,Batch index: [601/2276], Loss Value:[0.00027429], time: [1.5915343761444092]
+Epoch: [7/50]  ,Batch index: [801/2276], Loss Value:[0.00020539], time: [1.2914135456085205]
+Epoch: [7/50]  ,Batch index: [1001/2276], Loss Value:[0.00019857], time: [1.2132940292358398]
+Epoch: [7/50]  ,Batch index: [1201/2276], Loss Value:[0.00023398], time: [1.2008957862854004]
+Epoch: [7/50]  ,Batch index: [1401/2276], Loss Value:[0.00022196], time: [1.1331760883331299]
+Epoch: [7/50]  ,Batch index: [1601/2276], Loss Value:[0.00020417], time: [1.4505226612091064]
+Epoch: [7/50]  ,Batch index: [1801/2276], Loss Value:[0.00022405], time: [1.3426933288574219]
+Epoch: [7/50]  ,Batch index: [2001/2276], Loss Value:[0.00026160], time: [1.119786262512207]
+Epoch: [7/50]  ,Batch index: [2201/2276], Loss Value:[0.00025832], time: [1.2278037071228027]
+
+
+Loss      : 0.00026
+Accuracy  : 0.92274
+precision : 0.97982
+recall    : 0.92683
+TP (874), TN (165), FP1 (5), FP2 (13), FN (69)
+======================================== 8/50 ========================================
+Epoch: [8/50]  ,Batch index: [1/2276], Loss Value:[0.00016257], time: [1.4539430141448975]
+Epoch: [8/50]  ,Batch index: [201/2276], Loss Value:[0.00023773], time: [1.5157818794250488]
+Epoch: [8/50]  ,Batch index: [401/2276], Loss Value:[0.00016071], time: [1.4983375072479248]
+Epoch: [8/50]  ,Batch index: [601/2276], Loss Value:[0.00033629], time: [1.2354025840759277]
+Epoch: [8/50]  ,Batch index: [801/2276], Loss Value:[0.00032595], time: [1.8470869064331055]
+Epoch: [8/50]  ,Batch index: [1001/2276], Loss Value:[0.00034862], time: [1.4123811721801758]
+Epoch: [8/50]  ,Batch index: [1201/2276], Loss Value:[0.00016565], time: [1.2796030044555664]
+Epoch: [8/50]  ,Batch index: [1401/2276], Loss Value:[0.00022146], time: [1.1113169193267822]
+Epoch: [8/50]  ,Batch index: [1601/2276], Loss Value:[0.00027284], time: [1.2675848007202148]
+Epoch: [8/50]  ,Batch index: [1801/2276], Loss Value:[0.00025930], time: [1.2053492069244385]
+Epoch: [8/50]  ,Batch index: [2001/2276], Loss Value:[0.00019452], time: [1.4451065063476562]
+Epoch: [8/50]  ,Batch index: [2201/2276], Loss Value:[0.00023411], time: [1.4910430908203125]
+
+
+Loss      : 0.00024
+Accuracy  : 0.91297
+precision : 0.98509
+recall    : 0.90996
+TP (859), TN (169), FP1 (4), FP2 (9), FN (85)
+======================================== 9/50 ========================================
+Epoch: [9/50]  ,Batch index: [1/2276], Loss Value:[0.00022646], time: [1.321514368057251]
+Epoch: [9/50]  ,Batch index: [201/2276], Loss Value:[0.00030303], time: [1.428713321685791]
+Epoch: [9/50]  ,Batch index: [401/2276], Loss Value:[0.00024839], time: [1.1748380661010742]
+Epoch: [9/50]  ,Batch index: [601/2276], Loss Value:[0.00014122], time: [1.3612406253814697]
+Epoch: [9/50]  ,Batch index: [801/2276], Loss Value:[0.00038446], time: [0.9628090858459473]
+Epoch: [9/50]  ,Batch index: [1001/2276], Loss Value:[0.00018282], time: [1.5783874988555908]
+Epoch: [9/50]  ,Batch index: [1201/2276], Loss Value:[0.00023040], time: [1.5612614154815674]
+Epoch: [9/50]  ,Batch index: [1401/2276], Loss Value:[0.00019202], time: [1.4763476848602295]
+Epoch: [9/50]  ,Batch index: [1601/2276], Loss Value:[0.00026264], time: [1.2646079063415527]
+Epoch: [9/50]  ,Batch index: [1801/2276], Loss Value:[0.00017910], time: [1.3168971538543701]
+Epoch: [9/50]  ,Batch index: [2001/2276], Loss Value:[0.00031855], time: [1.3765027523040771]
+Epoch: [9/50]  ,Batch index: [2201/2276], Loss Value:[0.00020459], time: [1.1116180419921875]
+
+
+Loss      : 0.00023
+Accuracy  : 0.92718
+precision : 0.98756
+recall    : 0.92479
+TP (873), TN (171), FP1 (4), FP2 (7), FN (71)
+======================================== 10/50 ========================================
+Epoch: [10/50]  ,Batch index: [1/2276], Loss Value:[0.00015921], time: [1.7187678813934326]
+Epoch: [10/50]  ,Batch index: [201/2276], Loss Value:[0.00024724], time: [1.1824417114257812]
+Epoch: [10/50]  ,Batch index: [401/2276], Loss Value:[0.00034094], time: [1.271153211593628]
+Epoch: [10/50]  ,Batch index: [601/2276], Loss Value:[0.00017329], time: [1.2106845378875732]
+Epoch: [10/50]  ,Batch index: [801/2276], Loss Value:[0.00026818], time: [1.202749252319336]
+Epoch: [10/50]  ,Batch index: [1001/2276], Loss Value:[0.00023906], time: [1.3372561931610107]
+Epoch: [10/50]  ,Batch index: [1201/2276], Loss Value:[0.00021332], time: [1.1540887355804443]
+Epoch: [10/50]  ,Batch index: [1401/2276], Loss Value:[0.00020820], time: [1.3940434455871582]
+Epoch: [10/50]  ,Batch index: [1601/2276], Loss Value:[0.00016699], time: [1.487732172012329]
+Epoch: [10/50]  ,Batch index: [1801/2276], Loss Value:[0.00021892], time: [1.4297842979431152]
+Epoch: [10/50]  ,Batch index: [2001/2276], Loss Value:[0.00026975], time: [1.3694109916687012]
+Epoch: [10/50]  ,Batch index: [2201/2276], Loss Value:[0.00015733], time: [1.3117070198059082]
+
+
+Loss      : 0.00021
+Accuracy  : 0.91474
+precision : 0.96268
+recall    : 0.93397
+TP (877), TN (153), FP1 (9), FP2 (25), FN (62)
+======================================== 11/50 ========================================
+Epoch: [11/50]  ,Batch index: [1/2276], Loss Value:[0.00024017], time: [1.6868455410003662]
+Epoch: [11/50]  ,Batch index: [201/2276], Loss Value:[0.00025722], time: [1.4692180156707764]
+Epoch: [11/50]  ,Batch index: [401/2276], Loss Value:[0.00014057], time: [1.158527135848999]
+Epoch: [11/50]  ,Batch index: [601/2276], Loss Value:[0.00022762], time: [1.3534176349639893]
+Epoch: [11/50]  ,Batch index: [801/2276], Loss Value:[0.00020776], time: [1.412001609802246]
+Epoch: [11/50]  ,Batch index: [1001/2276], Loss Value:[0.00029075], time: [1.353065013885498]
+Epoch: [11/50]  ,Batch index: [1201/2276], Loss Value:[0.00012533], time: [1.3578331470489502]
+Epoch: [11/50]  ,Batch index: [1401/2276], Loss Value:[0.00015838], time: [1.4588305950164795]
+Epoch: [11/50]  ,Batch index: [1601/2276], Loss Value:[0.00015637], time: [1.1991934776306152]
+Epoch: [11/50]  ,Batch index: [1801/2276], Loss Value:[0.00016843], time: [1.0011801719665527]
+Epoch: [11/50]  ,Batch index: [2001/2276], Loss Value:[0.00020502], time: [1.2282886505126953]
+Epoch: [11/50]  ,Batch index: [2201/2276], Loss Value:[0.00021491], time: [1.3663876056671143]
+
+
+Loss      : 0.00020
+Accuracy  : 0.93783
+precision : 0.98881
+recall    : 0.93644
+TP (884), TN (172), FP1 (4), FP2 (6), FN (60)
+======================================== 12/50 ========================================
+Epoch: [12/50]  ,Batch index: [1/2276], Loss Value:[0.00018598], time: [1.3492093086242676]
+Epoch: [12/50]  ,Batch index: [201/2276], Loss Value:[0.00020485], time: [1.2881698608398438]
+Epoch: [12/50]  ,Batch index: [401/2276], Loss Value:[0.00022255], time: [1.4718992710113525]
+Epoch: [12/50]  ,Batch index: [601/2276], Loss Value:[0.00020289], time: [1.5926809310913086]
+Epoch: [12/50]  ,Batch index: [801/2276], Loss Value:[0.00016164], time: [1.319852590560913]
+Epoch: [12/50]  ,Batch index: [1001/2276], Loss Value:[0.00018483], time: [1.2526707649230957]
+Epoch: [12/50]  ,Batch index: [1201/2276], Loss Value:[0.00013773], time: [1.4646804332733154]
+Epoch: [12/50]  ,Batch index: [1401/2276], Loss Value:[0.00025167], time: [2.095487594604492]
+Epoch: [12/50]  ,Batch index: [1601/2276], Loss Value:[0.00020252], time: [1.4621427059173584]
+Epoch: [12/50]  ,Batch index: [1801/2276], Loss Value:[0.00014219], time: [1.3412981033325195]
+Epoch: [12/50]  ,Batch index: [2001/2276], Loss Value:[0.00024628], time: [1.2665281295776367]
+Epoch: [12/50]  ,Batch index: [2201/2276], Loss Value:[0.00018442], time: [1.1305408477783203]
+
+
+Loss      : 0.00019
+Accuracy  : 0.92718
+precision : 0.98757
+recall    : 0.92487
+TP (874), TN (170), FP1 (3), FP2 (8), FN (71)
+======================================== 13/50 ========================================
+Epoch: [13/50]  ,Batch index: [1/2276], Loss Value:[0.00016355], time: [1.351111650466919]
+Epoch: [13/50]  ,Batch index: [201/2276], Loss Value:[0.00014978], time: [1.3767895698547363]
+Epoch: [13/50]  ,Batch index: [401/2276], Loss Value:[0.00016864], time: [1.47833251953125]
+Epoch: [13/50]  ,Batch index: [601/2276], Loss Value:[0.00012883], time: [1.4042792320251465]
+Epoch: [13/50]  ,Batch index: [801/2276], Loss Value:[0.00029285], time: [1.54768967628479]
+Epoch: [13/50]  ,Batch index: [1001/2276], Loss Value:[0.00017410], time: [1.392760992050171]
+Epoch: [13/50]  ,Batch index: [1201/2276], Loss Value:[0.00019125], time: [1.5337750911712646]
+Epoch: [13/50]  ,Batch index: [1401/2276], Loss Value:[0.00012410], time: [1.4199819564819336]
+Epoch: [13/50]  ,Batch index: [1601/2276], Loss Value:[0.00024244], time: [1.4227783679962158]
+Epoch: [13/50]  ,Batch index: [1801/2276], Loss Value:[0.00022474], time: [1.4314076900482178]
+Epoch: [13/50]  ,Batch index: [2001/2276], Loss Value:[0.00020230], time: [1.4089727401733398]
+Epoch: [13/50]  ,Batch index: [2201/2276], Loss Value:[0.00015888], time: [1.6149051189422607]
+
+
+Loss      : 0.00019
+Accuracy  : 0.92806
+precision : 0.99092
+recall    : 0.92283
+TP (873), TN (172), FP1 (2), FP2 (6), FN (73)
+
+Model (./gdrive/MyDrive/last_model.pt) is Loaded
+======================================== 14/50 ========================================
+Epoch: [14/50]  ,Batch index: [1/2276], Loss Value:[0.00021411], time: [7.174698829650879]
+Epoch: [14/50]  ,Batch index: [201/2276], Loss Value:[0.00016047], time: [1.4522371292114258]
+Epoch: [14/50]  ,Batch index: [401/2276], Loss Value:[0.00017401], time: [1.6251509189605713]
+Epoch: [14/50]  ,Batch index: [601/2276], Loss Value:[0.00016046], time: [1.4301185607910156]
+Epoch: [14/50]  ,Batch index: [801/2276], Loss Value:[0.00024365], time: [1.443943738937378]
+Epoch: [14/50]  ,Batch index: [1001/2276], Loss Value:[0.00014988], time: [1.366576910018921]
+Epoch: [14/50]  ,Batch index: [1201/2276], Loss Value:[0.00024025], time: [1.4388701915740967]
+Epoch: [14/50]  ,Batch index: [1401/2276], Loss Value:[0.00013571], time: [1.4152610301971436]
+Epoch: [14/50]  ,Batch index: [1601/2276], Loss Value:[0.00014754], time: [1.2863404750823975]
+Epoch: [14/50]  ,Batch index: [1801/2276], Loss Value:[0.00018137], time: [1.3272643089294434]
+Epoch: [14/50]  ,Batch index: [2001/2276], Loss Value:[0.00016115], time: [1.2401337623596191]
+Epoch: [14/50]  ,Batch index: [2201/2276], Loss Value:[0.00018147], time: [1.3820910453796387]
+
+
+Loss      : 0.00017
+Accuracy  : 0.93517
+precision : 0.99101
+recall    : 0.93136
+TP (882), TN (171), FP1 (1), FP2 (7), FN (65)
+======================================== 15/50 ========================================
+Epoch: [15/50]  ,Batch index: [1/2276], Loss Value:[0.00016303], time: [1.4917616844177246]
+Epoch: [15/50]  ,Batch index: [201/2276], Loss Value:[0.00016839], time: [1.375490665435791]
+Epoch: [15/50]  ,Batch index: [401/2276], Loss Value:[0.00015954], time: [1.421438217163086]
+Epoch: [15/50]  ,Batch index: [601/2276], Loss Value:[0.00025343], time: [1.4528796672821045]
+Epoch: [15/50]  ,Batch index: [801/2276], Loss Value:[0.00020186], time: [1.4799590110778809]
+Epoch: [15/50]  ,Batch index: [1001/2276], Loss Value:[0.00022635], time: [1.4971351623535156]
+Epoch: [15/50]  ,Batch index: [1201/2276], Loss Value:[0.00013045], time: [1.3124079704284668]
+Epoch: [15/50]  ,Batch index: [1401/2276], Loss Value:[0.00028300], time: [1.1401035785675049]
+Epoch: [15/50]  ,Batch index: [1601/2276], Loss Value:[0.00019905], time: [1.4896154403686523]
+Epoch: [15/50]  ,Batch index: [1801/2276], Loss Value:[0.00018964], time: [1.430988073348999]
+Epoch: [15/50]  ,Batch index: [2001/2276], Loss Value:[0.00016812], time: [1.289517879486084]
+Epoch: [15/50]  ,Batch index: [2201/2276], Loss Value:[0.00015096], time: [1.2930762767791748]
+
+
+Loss      : 0.00017
+Accuracy  : 0.93961
+precision : 0.98997
+recall    : 0.93770
+TP (888), TN (170), FP1 (1), FP2 (8), FN (59)
+
+Model (./gdrive/MyDrive/last_model.pt) is Loaded
+======================================== 16/50 ========================================
+Epoch: [16/50]  ,Batch index: [1/2276], Loss Value:[0.00013205], time: [9.213778495788574]
+Epoch: [16/50]  ,Batch index: [201/2276], Loss Value:[0.00014757], time: [1.7603492736816406]
+Epoch: [16/50]  ,Batch index: [401/2276], Loss Value:[0.00019701], time: [1.5271577835083008]
+Epoch: [16/50]  ,Batch index: [601/2276], Loss Value:[0.00019811], time: [1.6285755634307861]
+Epoch: [16/50]  ,Batch index: [801/2276], Loss Value:[0.00017236], time: [1.2592971324920654]
+Epoch: [16/50]  ,Batch index: [1001/2276], Loss Value:[0.00019495], time: [1.4012882709503174]
+Epoch: [16/50]  ,Batch index: [1201/2276], Loss Value:[0.00015649], time: [1.4704227447509766]
+Epoch: [16/50]  ,Batch index: [1401/2276], Loss Value:[0.00014309], time: [1.4502630233764648]
+Epoch: [16/50]  ,Batch index: [1601/2276], Loss Value:[0.00018587], time: [1.5043449401855469]
+Epoch: [16/50]  ,Batch index: [1801/2276], Loss Value:[0.00019943], time: [1.587512493133545]
+Epoch: [16/50]  ,Batch index: [2001/2276], Loss Value:[0.00014135], time: [1.4585044384002686]
+Epoch: [16/50]  ,Batch index: [2201/2276], Loss Value:[0.00038207], time: [1.393495798110962]
+
+
+Loss      : 0.00017
+Accuracy  : 0.93961
+precision : 0.98888
+recall    : 0.93875
+TP (889), TN (169), FP1 (1), FP2 (9), FN (58)
+======================================== 17/50 ========================================
+Epoch: [17/50]  ,Batch index: [1/2276], Loss Value:[0.00018113], time: [1.6387743949890137]
+Epoch: [17/50]  ,Batch index: [201/2276], Loss Value:[0.00019098], time: [1.289853572845459]
+Epoch: [17/50]  ,Batch index: [401/2276], Loss Value:[0.00013834], time: [1.7551894187927246]
+Epoch: [17/50]  ,Batch index: [601/2276], Loss Value:[0.00017246], time: [1.308617353439331]
+Epoch: [17/50]  ,Batch index: [801/2276], Loss Value:[0.00024298], time: [1.43711519241333]
+Epoch: [17/50]  ,Batch index: [1001/2276], Loss Value:[0.00016800], time: [1.280879020690918]
+Epoch: [17/50]  ,Batch index: [1201/2276], Loss Value:[0.00017074], time: [1.153355598449707]
+Epoch: [17/50]  ,Batch index: [1401/2276], Loss Value:[0.00016563], time: [1.3372340202331543]
+Epoch: [17/50]  ,Batch index: [1601/2276], Loss Value:[0.00013749], time: [1.2069001197814941]
+Epoch: [17/50]  ,Batch index: [1801/2276], Loss Value:[0.00012930], time: [1.1301062107086182]
+Epoch: [17/50]  ,Batch index: [2001/2276], Loss Value:[0.00016808], time: [1.4056925773620605]
+Epoch: [17/50]  ,Batch index: [2201/2276], Loss Value:[0.00015574], time: [1.5192937850952148]
+
+
+Loss      : 0.00017
+Accuracy  : 0.94405
+precision : 0.99111
+recall    : 0.94192
+TP (892), TN (171), FP1 (1), FP2 (7), FN (55)
+======================================== 18/50 ========================================
+Epoch: [18/50]  ,Batch index: [1/2276], Loss Value:[0.00017708], time: [1.631504774093628]
+Epoch: [18/50]  ,Batch index: [201/2276], Loss Value:[0.00015767], time: [1.3820624351501465]
+Epoch: [18/50]  ,Batch index: [401/2276], Loss Value:[0.00016913], time: [1.3569669723510742]
+Epoch: [18/50]  ,Batch index: [601/2276], Loss Value:[0.00016711], time: [1.423982858657837]
+Epoch: [18/50]  ,Batch index: [801/2276], Loss Value:[0.00016952], time: [1.1169359683990479]
+Epoch: [18/50]  ,Batch index: [1001/2276], Loss Value:[0.00015611], time: [1.1866209506988525]
+Epoch: [18/50]  ,Batch index: [1201/2276], Loss Value:[0.00018633], time: [1.3594889640808105]
+Epoch: [18/50]  ,Batch index: [1401/2276], Loss Value:[0.00016362], time: [1.885223627090454]
+Epoch: [18/50]  ,Batch index: [1601/2276], Loss Value:[0.00013903], time: [1.2954213619232178]
+Epoch: [18/50]  ,Batch index: [1801/2276], Loss Value:[0.00014492], time: [1.3363926410675049]
+Epoch: [18/50]  ,Batch index: [2001/2276], Loss Value:[0.00022620], time: [1.1592249870300293]
+Epoch: [18/50]  ,Batch index: [2201/2276], Loss Value:[0.00020107], time: [1.3577024936676025]
+
+
+Loss      : 0.00017
+Accuracy  : 0.94227
+precision : 0.99000
+recall    : 0.94087
+TP (891), TN (170), FP1 (1), FP2 (8), FN (56)
+======================================== 19/50 ========================================
+Epoch: [19/50]  ,Batch index: [1/2276], Loss Value:[0.00015549], time: [1.5914900302886963]
+Epoch: [19/50]  ,Batch index: [201/2276], Loss Value:[0.00019226], time: [1.3820652961730957]
+Epoch: [19/50]  ,Batch index: [401/2276], Loss Value:[0.00014124], time: [1.3072423934936523]
+Epoch: [19/50]  ,Batch index: [601/2276], Loss Value:[0.00017251], time: [1.2037150859832764]
+Epoch: [19/50]  ,Batch index: [801/2276], Loss Value:[0.00015757], time: [1.1693758964538574]
+Epoch: [19/50]  ,Batch index: [1001/2276], Loss Value:[0.00017262], time: [1.5456016063690186]
+Epoch: [19/50]  ,Batch index: [1201/2276], Loss Value:[0.00024962], time: [1.3712012767791748]
+Epoch: [19/50]  ,Batch index: [1401/2276], Loss Value:[0.00012520], time: [1.4174537658691406]
+Epoch: [19/50]  ,Batch index: [1601/2276], Loss Value:[0.00018186], time: [1.2888965606689453]
+Epoch: [19/50]  ,Batch index: [1801/2276], Loss Value:[0.00021684], time: [1.257899284362793]
+Epoch: [19/50]  ,Batch index: [2001/2276], Loss Value:[0.00018582], time: [1.2402870655059814]
+Epoch: [19/50]  ,Batch index: [2201/2276], Loss Value:[0.00041445], time: [1.402942419052124]
+
+
+Loss      : 0.00017
+Accuracy  : 0.93517
+precision : 0.98991
+recall    : 0.93242
+TP (883), TN (170), FP1 (1), FP2 (8), FN (64)
+======================================== 20/50 ========================================
+Epoch: [20/50]  ,Batch index: [1/2276], Loss Value:[0.00017558], time: [1.714153528213501]
+Epoch: [20/50]  ,Batch index: [201/2276], Loss Value:[0.00012471], time: [1.154212236404419]
+Epoch: [20/50]  ,Batch index: [401/2276], Loss Value:[0.00013397], time: [1.2963733673095703]
+Epoch: [20/50]  ,Batch index: [601/2276], Loss Value:[0.00020845], time: [1.5847997665405273]
+Epoch: [20/50]  ,Batch index: [801/2276], Loss Value:[0.00014183], time: [1.245589256286621]
+Epoch: [20/50]  ,Batch index: [1001/2276], Loss Value:[0.00013737], time: [1.1060519218444824]
+Epoch: [20/50]  ,Batch index: [1201/2276], Loss Value:[0.00012306], time: [1.2588727474212646]
+Epoch: [20/50]  ,Batch index: [1401/2276], Loss Value:[0.00013192], time: [1.554029941558838]
+Epoch: [20/50]  ,Batch index: [1601/2276], Loss Value:[0.00020690], time: [1.1544947624206543]
+Epoch: [20/50]  ,Batch index: [1801/2276], Loss Value:[0.00014651], time: [1.259098768234253]
+Epoch: [20/50]  ,Batch index: [2001/2276], Loss Value:[0.00011537], time: [1.5745959281921387]
+Epoch: [20/50]  ,Batch index: [2201/2276], Loss Value:[0.00015599], time: [1.1545121669769287]
+
+
+Loss      : 0.00017
+Accuracy  : 0.93872
+precision : 0.99105
+recall    : 0.93559
+TP (886), TN (171), FP1 (1), FP2 (7), FN (61)
