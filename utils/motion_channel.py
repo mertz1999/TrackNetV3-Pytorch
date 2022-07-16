@@ -24,7 +24,7 @@ def motion_channelV2(img1, img2, img3):
     hsv_now = hsv_now.astype(np.float64)
     hsv_pre = hsv_pre.astype(np.float64)
 
-    tot_diff  = np.abs((hsv_pre[:,:,2]- hsv_fut[:,:,2])) + np.abs((hsv_now[:,:,2] - hsv_fut[:,:,2]))
+    tot_diff  = np.abs((hsv_fut[:,:,2]) - hsv_pre[:,:,2]) + np.abs((hsv_fut[:,:,2] - hsv_now[:,:,2]))
     tot_diff  = ((tot_diff - np.min(tot_diff))/(np.max(tot_diff) - np.min(tot_diff)) * 255).astype(np.uint8)
 
     return tot_diff
