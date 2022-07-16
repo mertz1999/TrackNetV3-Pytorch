@@ -117,6 +117,10 @@ while(frame_idx <= total_frame-2):
     image_4 = motion_channelV2(image_1, image_2, image_3)
     image_4 = cv2.resize(image_4, (WIDTH, HEIGHT))
 
+    out_image2 = image_4.copy()
+    out_image2 = (out_image2 - np.min(out_image2))/(np.max(out_image2)-np.min(out_image2)) *255
+    out_image2 = out_image2.astype(np.uint8)
+
     # Preprocesss images
     image_1, image_2, image_3 = map(base_transform, [image_1, image_2, image_3])
 
@@ -163,12 +167,11 @@ while(frame_idx <= total_frame-2):
     except:
         (cx_pred, cy_pred) = (0,0)
     
-    
-
     cv2.circle(image3_cp, (cx_pred, cy_pred), 5, (0,0,255), -1)
 
     # Write output on video
     if show_map:
+        # Output of model
         out_width  = int(width // 4)
         out_height = int((out_width * height) // width)
         
@@ -179,6 +182,13 @@ while(frame_idx <= total_frame-2):
         out_image = cv2.applyColorMap(out_image, cv2.COLORMAP_VIRIDIS)
 
         image3_cp[-out_height:height, 0:out_width, :] = out_image
+    
+        # Motion channel
+        out_image2 = cv2.resize(out_image2, (out_width, out_height))
+
+        out_image2 = cv2.applyColorMap(out_image2, cv2.COLORMAP_VIRIDIS)
+
+        image3_cp[-out_height:height, out_width:out_width*2, :] = out_image2
 
     out_vid.write(image3_cp)
 
