@@ -28,3 +28,17 @@ def motion_channelV2(img1, img2, img3):
     tot_diff  = ((tot_diff - np.min(tot_diff))/(np.max(tot_diff) - np.min(tot_diff)) * 255).astype(np.uint8)
 
     return tot_diff
+
+
+def motion_channelV3(img1, img2):
+    hsv_now  = cv2.cvtColor(img2, cv2.COLOR_BGR2HSV)
+    hsv_pre  = cv2.cvtColor(img1, cv2.COLOR_BGR2HSV)
+
+    hsv_now = hsv_now.astype(np.float64)
+    hsv_pre = hsv_pre.astype(np.float64)
+
+    tot_diff  = np.abs((hsv_now[:,:,2]) - hsv_pre[:,:,2])
+    # tot_diff  = np.abs((hsv_fut[:,:,2]) - hsv_pre[:,:,2]) + np.abs((hsv_fut[:,:,2] - hsv_now[:,:,2]))
+    tot_diff  = ((tot_diff - np.min(tot_diff))/(np.max(tot_diff) - np.min(tot_diff)) * 255).astype(np.uint8)
+
+    return tot_diff

@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision import transforms
 from .generate_heatmap import genHeatMap
-from .motion_channel import motion_channel, motion_channelV2
+from .motion_channel import motion_channel, motion_channelV2, motion_channelV3
 from torch.utils.data import Dataset, DataLoader
 
 
@@ -196,8 +196,11 @@ class VollyDatasetV2(Dataset):
         _, image_3 = cap.read()
 
         # Preprocess path
-        image_4 = motion_channelV2(image_1, image_2, image_3)
+        image_4 = motion_channelV3(image_2, image_3)
         image_4 = cv2.resize(image_4, (self.width, self.height))
+
+        image_5 = motion_channelV3(image_1, image_2)
+        image_5 = cv2.resize(image_5, (self.width, self.height))
 
         image_1, image_2, image_3 = map(self.base_transform, [image_1, image_2, image_3])
 
@@ -221,8 +224,8 @@ class VollyDatasetV2(Dataset):
                              )
         
         # Apply transform to inputs images
-        input_images        = np.zeros((self.height, self.width, 4), dtype=np.uint8)
-        input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_3; input_images[:,:,3] = image_4
+        input_images        = np.zeros((self.height, self.width, 5), dtype=np.uint8)
+        input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_5; input_images[:,:,3] = image_3, input_images[:,:,4] = image_4
         input_images        = self.transform(input_images)
 
         # Apply transform to label images
