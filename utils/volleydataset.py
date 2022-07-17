@@ -225,7 +225,7 @@ class VollyDatasetV2(Dataset):
         
         # Apply transform to inputs images
         input_images        = np.zeros((self.height, self.width, 5), dtype=np.uint8)
-        input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_5; input_images[:,:,3] = image_3, input_images[:,:,4] = image_4
+        input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_5; input_images[:,:,3] = image_3; input_images[:,:,4] = image_4
         input_images        = self.transform(input_images)
 
         # Apply transform to label images
