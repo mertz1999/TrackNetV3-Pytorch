@@ -54,6 +54,9 @@ HEIGHT     = args.Height
 show_map   = args.show_map
 
 OUTPUT     = "."+VIDEO_PATH.split(".")[-2]+"_predicted.mp4"
+OUTPUT_CSV = "."+VIDEO_PATH.split(".")[-2]+"_predicted.csv"
+f = open(OUTPUT_CSV, 'w')
+f.write('Frame,Visibility,X,Y\n')
 
 
 # Check processor
@@ -95,7 +98,7 @@ out_vid = cv2.VideoWriter(OUTPUT, fourcc, frame_rate, (width, height),True)
 
 
 # Read frame by frame
-frame_idx = 245
+frame_idx = 0
 start_time = time.time()
 while(frame_idx <= total_frame-2):
     print(f'Reading Frame {frame_idx}')
@@ -157,11 +160,6 @@ while(frame_idx <= total_frame-2):
     pred_images_copy = pred_images.copy()
 
 
-    # plt.subplot(1,3,1);plt.imshow(pred_images_copy[0])
-    # plt.subplot(1,3,2);plt.imshow(pred_images_copy[1])
-    # plt.subplot(1,3,3);plt.imshow(pred_images_copy[2])
-    # plt.show()
-
     for channel in range(3):
         X = pred_images_copy[channel]
         (cnts, _) = cv2.findContours(X, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -184,7 +182,9 @@ while(frame_idx <= total_frame-2):
             (cx_pred, cy_pred) = (0,0)
         
         cv2.circle(input_images_list[channel], (cx_pred, cy_pred), 5, (0,0,255), -1)
-        plt.imshow(input_images_list[channel]);plt.show()
+        f.write(f'{frame_idx+channel},{0 if (cx_pred, cy_pred) == (0,0) else 1},{cx_pred},{cy_pred}\n')
+        
+        # plt.imshow(input_images_list[channel]);plt.show()
 
         out_vid.write(input_images_list[channel])
 
