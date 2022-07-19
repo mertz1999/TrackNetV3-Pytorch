@@ -10,7 +10,7 @@ positional arguments:
 """
 
 from utils.res_tracknet import ResNet_Track
-from utils.motion_channel import motion_channel, motion_channelV2
+from utils.motion_channel import motion_channel, motion_channelV2, motion_channelV3
 from torchvision import transforms
 import matplotlib.pyplot as plt
 import numpy as np
@@ -95,27 +95,35 @@ out_vid = cv2.VideoWriter(OUTPUT, fourcc, frame_rate, (width, height),True)
 
 
 # Read frame by frame
-frame_idx = 2
+frame_idx = 245
 start_time = time.time()
 while(frame_idx <= total_frame-2):
     print(f'Reading Frame {frame_idx}')
 
     # Third image channel
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx+2)
     _, image_3 = cap.read()
     image3_cp = np.copy(image_3)
 
     # Secound image channel
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx-1)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx+1)
     _, image_2 = cap.read()
+    image2_cp = np.copy(image_2)
 
     # First image channel
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx-2)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
     _, image_1 = cap.read()
+    image1_cp = np.copy(image_1)
+
+    input_images_list = [image1_cp, image2_cp, image3_cp]
 
     # Fourth image channel (Motion channel)
-    image_4 = motion_channelV2(image_1, image_2, image_3)
+    # Preprocess path
+    image_4 = motion_channelV3(image_2, image_3)
     image_4 = cv2.resize(image_4, (WIDTH, HEIGHT))
+
+    image_5 = motion_channelV3(image_1, image_2)
+    image_5 = cv2.resize(image_5, (WIDTH, HEIGHT))
 
     out_image2 = image_4.copy()
     out_image2 = (out_image2 - np.min(out_image2))/(np.max(out_image2)-np.min(out_image2)) *255
@@ -125,8 +133,8 @@ while(frame_idx <= total_frame-2):
     image_1, image_2, image_3 = map(base_transform, [image_1, image_2, image_3])
 
     # Apply transform to inputs images 
-    input_images        = np.zeros((HEIGHT, WIDTH, 4), dtype=np.uint8)
-    input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_3; input_images[:,:,3] = image_4
+    input_images        = np.zeros((HEIGHT, WIDTH, 5), dtype=np.uint8)
+    input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_5; input_images[:,:,3] = image_3; input_images[:,:,4] = image_4
     input_images        = transform(input_images).unsqueeze(0)
 
 
@@ -141,58 +149,46 @@ while(frame_idx <= total_frame-2):
     pred_images = pred_images.cpu().detach()
     pred_images = pred_images.squeeze(0)
     pred_images = pred_images.numpy()
-    out_image   = pred_images[0].copy()
+    out_image   = pred_images.copy()
     pred_images = pred_images > 0.5
-    pred_images = pred_images[0] * 255
+    pred_images = pred_images * 255
     pred_images = pred_images.astype(np.uint8)
 
+    pred_images_copy = pred_images.copy()
 
-    #h_pred
-    (cnts, _) = cv2.findContours(pred_images.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    rects = [cv2.boundingRect(ctr) for ctr in cnts]
-    max_area_idx = 0
-    try:
-        max_area = rects[max_area_idx][2] * rects[max_area_idx][3]
-        for i in range(len(rects)):
-            area = rects[i][2] * rects[i][3]
-            if area > max_area:
-                max_area_idx = i
-                max_area = area
-        target = rects[max_area_idx]
 
-        (cx_pred, cy_pred) = (
-            int((target[0] + target[2] / 2) * (width/WIDTH)),
-            int((target[1] + target[3] / 2) * (height/HEIGHT)),
-            )
-    except:
-        (cx_pred, cy_pred) = (0,0)
-    
-    cv2.circle(image3_cp, (cx_pred, cy_pred), 5, (0,0,255), -1)
+    # plt.subplot(1,3,1);plt.imshow(pred_images_copy[0])
+    # plt.subplot(1,3,2);plt.imshow(pred_images_copy[1])
+    # plt.subplot(1,3,3);plt.imshow(pred_images_copy[2])
+    # plt.show()
 
-    # Write output on video
-    if show_map:
-        # Output of model
-        out_width  = int(width // 4)
-        out_height = int((out_width * height) // width)
+    for channel in range(3):
+        X = pred_images_copy[channel]
+        (cnts, _) = cv2.findContours(X, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        rects = [cv2.boundingRect(ctr) for ctr in cnts]
+        max_area_idx = 0
+        try:
+            max_area = rects[max_area_idx][2] * rects[max_area_idx][3]
+            for i in range(len(rects)):
+                area = rects[i][2] * rects[i][3]
+                if area > max_area:
+                    max_area_idx = i
+                    max_area = area
+            target = rects[max_area_idx]
+
+            (cx_pred, cy_pred) = (
+                int((target[0] + target[2] / 2) * (width/WIDTH)),
+                int((target[1] + target[3] / 2) * (height/HEIGHT)),
+                )
+        except:
+            (cx_pred, cy_pred) = (0,0)
         
-        out_image = out_image * 255
-        out_image = out_image.astype(np.uint8)
-        out_image = cv2.resize(out_image, (out_width, out_height))
+        cv2.circle(input_images_list[channel], (cx_pred, cy_pred), 5, (0,0,255), -1)
+        plt.imshow(input_images_list[channel]);plt.show()
 
-        out_image = cv2.applyColorMap(out_image, cv2.COLORMAP_VIRIDIS)
+        out_vid.write(input_images_list[channel])
 
-        image3_cp[-out_height:height, 0:out_width, :] = out_image
-    
-        # Motion channel
-        out_image2 = cv2.resize(out_image2, (out_width, out_height))
-
-        out_image2 = cv2.applyColorMap(out_image2, cv2.COLORMAP_VIRIDIS)
-
-        image3_cp[-out_height:height, out_width:out_width*2, :] = out_image2
-
-    out_vid.write(image3_cp)
-
-    frame_idx += 1
+    frame_idx += 3
 
 print("\nTotal Time: ", time.time() - start_time)
 out_vid.release()
