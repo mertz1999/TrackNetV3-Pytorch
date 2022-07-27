@@ -63,14 +63,14 @@ f.write('Frame,Visibility,X,Y\n')
 CUDA = torch.cuda.is_available()
 print("CUDA Availability: ", CUDA)
 if CUDA:
-    # torch.backends.cudnn.benchmark = True
+    torch.backends.cudnn.benchmark = True
     device = torch.device('cuda:0')
 else:
     device = torch.device('cpu')
 
 # Loading Model
 model = ResNet_Track().to(device)
-
+model = model.eval()
 try:
     model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device(device)))
     model.eval()

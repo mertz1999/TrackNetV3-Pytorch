@@ -86,7 +86,8 @@ def predict(index):
 #####################################################################################
 
 # Path to video file
-VIDEO_PATH = "./games/8/8_06.mp4"
+# VIDEO_PATH = "./games/8/8_06.mp4"
+VIDEO_PATH = "video_test.mp4"
 WIDTH      = 512
 HEIGHT     = 288
 MODEL_PATH = 'models/last_model (22).pt'
