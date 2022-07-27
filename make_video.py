@@ -87,7 +87,7 @@ def predict(index):
 
 # Path to video file
 # VIDEO_PATH = "./games/8/8_06.mp4"
-VIDEO_PATH = "video_test.mp4"
+VIDEO_PATH = "./games/777/777_02.MOV"
 WIDTH      = 512
 HEIGHT     = 288
 MODEL_PATH = 'models/last_model (22).pt'
@@ -107,6 +107,7 @@ else:
 
 # Loading Model
 model = ResNet_Track().to(device)
+model = model.eval()
 
 try:
     model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device(device)))
@@ -150,7 +151,6 @@ for i in data.Frame:
 # Find lost frames another one
 for i in data.Frame:
     if data['Visibility'][data.Frame == i].iloc[0] == 0 and (i > 2) and (i < (len(data) -3)):
-        print(i)
         # Check for frame (i-2)(i-1)(i)
         temp_output = predict(i-2)
         if temp_output[2] != [0,0]:
@@ -165,9 +165,11 @@ for i in data.Frame:
             data['X'][data.Frame == i] = temp_output[1][0]
             data['Y'][data.Frame == i] = temp_output[1][1]
 
-            # if data['Visibility'][data.Frame == i+1].iloc[0] == 0:
-            #     data['X'][data.Frame == i+1].iloc[0] = temp_output[2][0]
-            #     data['Y'][data.Frame == i+1].iloc[0] = temp_output[2][1]
+            if data['Visibility'][data.Frame == i+1].iloc[0] == 0 and (temp_output[2][0],temp_output[2][1])!=(0,0):
+                print(i+1, "IS UPDATED")
+                data['X'][data.Frame == i+1].iloc[0] = temp_output[2][0]
+                data['Y'][data.Frame == i+1].iloc[0] = temp_output[2][1]
+                data['Visibility'][data.Frame == i+1].iloc[0] = 1
 
             continue
         
@@ -177,13 +179,17 @@ for i in data.Frame:
             data['X'][data.Frame == i] = temp_output[0][0]
             data['Y'][data.Frame == i] = temp_output[0][1]
 
-            # if data['Visibility'][data.Frame == i+1].iloc[0] == 0:
-            #     data['X'][data.Frame == i+1].iloc[0] = temp_output[1][0]
-            #     data['Y'][data.Frame == i+1].iloc[0] = temp_output[1][1]
+            if data['Visibility'][data.Frame == i+1].iloc[0] == 0 and (temp_output[1][0],temp_output[1][1])!=(0,0):
+                print(i+1, "IS UPDATED")
+                data['X'][data.Frame == i+1].iloc[0] = temp_output[1][0]
+                data['Y'][data.Frame == i+1].iloc[0] = temp_output[1][1]
+                data['Visibility'][data.Frame == i+1].iloc[0] = 1
 
-            # if data['Visibility'][data.Frame == i+1].iloc[0] == 0:
-            #     data['X'][data.Frame == i+2].iloc[0] = temp_output[2][0]
-            #     data['Y'][data.Frame == i+2].iloc[0] = temp_output[2][1]
+            if data['Visibility'][data.Frame == i+2].iloc[0] == 0 and (temp_output[2][0],temp_output[2][1])!=(0,0):
+                print(i+2, "IS UPDATED")
+                data['X'][data.Frame == i+2].iloc[0] = temp_output[2][0]
+                data['Y'][data.Frame == i+2].iloc[0] = temp_output[2][1]
+                data['Visibility'][data.Frame == i+2].iloc[0] = 1
 
             continue
 
