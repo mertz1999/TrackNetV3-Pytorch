@@ -18,7 +18,7 @@ parser.add_argument('--log', type=str, default="./log.txt",
                     help='path to log file(default: ./log.txt)')
 parser.add_argument('--sigma', type=float, default=2,
                     help='radius of circle generated in heat map(default: 5)')
-parser.add_argument('--tol', type=float, default=10.0,
+parser.add_argument('--tol', type=float, default=5.0,
                     help='''acceptable tolerance of heat map circle center between 
                             ground truth and prediction(default: 5.0)''')
 parser.add_argument('--batch_size', type=int, default=16,
