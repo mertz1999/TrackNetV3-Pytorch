@@ -16,7 +16,7 @@ class FocalLoss2(nn.Module):
         eps = np.finfo(float).eps
         p_t = torch.where(target == 1, x, 1-x)
         fl = - 1 * (1 - p_t) ** self.gamma * torch.log(p_t + eps)
-        # fl = torch.where(target == 1, fl * self.alpha, fl * (1 - self.alpha))
+        fl = torch.where(target == 1, fl * self.alpha, fl * (1 - self.alpha))
         return self._reduce(fl)
 
     def _reduce(self, x):
