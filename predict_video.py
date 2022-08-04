@@ -128,10 +128,6 @@ while(frame_idx <= total_frame-2):
     image_5 = motion_channelV3(image_1, image_2)
     image_5 = cv2.resize(image_5, (WIDTH, HEIGHT))
 
-    out_image2 = image_4.copy()
-    out_image2 = (out_image2 - np.min(out_image2))/(np.max(out_image2)-np.min(out_image2)) *255
-    out_image2 = out_image2.astype(np.uint8)
-
     # Preprocesss images
     image_1, image_2, image_3 = map(base_transform, [image_1, image_2, image_3])
 
@@ -186,7 +182,7 @@ while(frame_idx <= total_frame-2):
         
         # plt.imshow(input_images_list[channel]);plt.show()
 
-        out_vid.write(input_images_list[channel])
+        # out_vid.write(input_images_list[channel])
 
     frame_idx += 3
 

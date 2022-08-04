@@ -87,7 +87,7 @@ def predict(index):
 
 # Path to video file
 # VIDEO_PATH = "./games/8/8_06.mp4"
-VIDEO_PATH = "./games/777/777_02.MOV"
+VIDEO_PATH = "./games/real/6_1.mp4"
 WIDTH      = 512
 HEIGHT     = 288
 MODEL_PATH = 'models/last_model (22).pt'
@@ -97,24 +97,24 @@ OUTPUT     = "."+VIDEO_PATH.split(".")[-2]+"_predicted_improved.mp4"
 CSV_PATH   = "."+VIDEO_PATH.split(".")[-2]+"_predicted.csv"
 
 # Check processor
-CUDA = torch.cuda.is_available()
-print("CUDA Availability: ", CUDA)
-if CUDA:
-    # torch.backends.cudnn.benchmark = True
-    device = torch.device('cuda:0')
-else:
-    device = torch.device('cpu')
+# CUDA = torch.cuda.is_available()
+# print("CUDA Availability: ", CUDA)
+# if CUDA:
+#     # torch.backends.cudnn.benchmark = True
+#     device = torch.device('cuda:0')
+# else:
+#     device = torch.device('cpu')
 
-# Loading Model
-model = ResNet_Track().to(device)
-model = model.eval()
+# # Loading Model
+# model = ResNet_Track().to(device)
+# model = model.eval()
 
-try:
-    model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device(device)))
-    model.eval()
-    print("\nModel ({}) is Loaded".format(MODEL_PATH))
-except:
-    print("Problem in loading model ! ");exit()
+# try:
+#     model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device(device)))
+#     model.eval()
+#     print("\nModel ({}) is Loaded".format(MODEL_PATH))
+# except:
+#     print("Problem in loading model ! ");exit()
 
 
 # Read video
@@ -129,88 +129,88 @@ data = pd.read_csv(CSV_PATH)
 
 
 # filling gaps between excatly two points
-prev_frame = -1
-flag = False
-for i in data.Frame:
-    if data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == False:
-        prev_frame = i
-    elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == False:
-        flag = True
-    elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == True:
-        flag = False 
-    elif data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == True:
-        data['Visibility'][data.Frame == i-1] = 1 
-        data['X'][data.Frame == i-1] = (data['X'][data.Frame == i].iloc[0] + data['X'][data.Frame == prev_frame].iloc[0])/2
-        data['Y'][data.Frame == i-1] = (data['Y'][data.Frame == i].iloc[0] + data['Y'][data.Frame == prev_frame].iloc[0])/2
-        flag = False
-        print(f"Data {i-1} is Updated!")
+# prev_frame = -1
+# flag = False
+# for i in data.Frame:
+#     if data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == False:
+#         prev_frame = i
+#     elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == False:
+#         flag = True
+#     elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == True:
+#         flag = False 
+#     elif data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == True:
+#         data['Visibility'][data.Frame == i-1] = 1 
+#         data['X'][data.Frame == i-1] = (data['X'][data.Frame == i].iloc[0] + data['X'][data.Frame == prev_frame].iloc[0])/2
+#         data['Y'][data.Frame == i-1] = (data['Y'][data.Frame == i].iloc[0] + data['Y'][data.Frame == prev_frame].iloc[0])/2
+#         flag = False
+#         print(f"Data {i-1} is Updated!")
 
-# data.to_csv('test.csv')
-# exit()
+# # data.to_csv('test.csv')
+# # exit()
 
-# Find lost frames another one
-for i in data.Frame:
-    if data['Visibility'][data.Frame == i].iloc[0] == 0 and (i > 2) and (i < (len(data) -3)):
-        # Check for frame (i-2)(i-1)(i)
-        temp_output = predict(i-2)
-        if temp_output[2] != [0,0]:
-            print(i, "IS UPDATED")
-            data['X'][data.Frame == i] = temp_output[2][0]
-            data['Y'][data.Frame == i] = temp_output[2][1]
-            continue
+# # Find lost frames another one
+# for i in data.Frame:
+#     if data['Visibility'][data.Frame == i].iloc[0] == 0 and (i > 2) and (i < (len(data) -3)):
+#         # Check for frame (i-2)(i-1)(i)
+#         temp_output = predict(i-2)
+#         if temp_output[2] != [0,0]:
+#             print(i, "IS UPDATED")
+#             data['X'][data.Frame == i] = temp_output[2][0]
+#             data['Y'][data.Frame == i] = temp_output[2][1]
+#             continue
 
-        # Check for frame (i-1)(i)(i+1)
-        temp_output = predict(i-1)
-        if temp_output[1] != [0,0]:
-            data['X'][data.Frame == i] = temp_output[1][0]
-            data['Y'][data.Frame == i] = temp_output[1][1]
+#         # Check for frame (i-1)(i)(i+1)
+#         temp_output = predict(i-1)
+#         if temp_output[1] != [0,0]:
+#             data['X'][data.Frame == i] = temp_output[1][0]
+#             data['Y'][data.Frame == i] = temp_output[1][1]
 
-            if data['Visibility'][data.Frame == i+1].iloc[0] == 0 and (temp_output[2][0],temp_output[2][1])!=(0,0):
-                print(i+1, "IS UPDATED")
-                data['X'][data.Frame == i+1].iloc[0] = temp_output[2][0]
-                data['Y'][data.Frame == i+1].iloc[0] = temp_output[2][1]
-                data['Visibility'][data.Frame == i+1].iloc[0] = 1
+#             if data['Visibility'][data.Frame == i+1].iloc[0] == 0 and (temp_output[2][0],temp_output[2][1])!=(0,0):
+#                 print(i+1, "IS UPDATED")
+#                 data['X'][data.Frame == i+1].iloc[0] = temp_output[2][0]
+#                 data['Y'][data.Frame == i+1].iloc[0] = temp_output[2][1]
+#                 data['Visibility'][data.Frame == i+1].iloc[0] = 1
 
-            continue
+#             continue
         
-        # Check for frame (i)(i+1)(i+2)
-        temp_output = predict(i)
-        if temp_output[0] != [0,0]:
-            data['X'][data.Frame == i] = temp_output[0][0]
-            data['Y'][data.Frame == i] = temp_output[0][1]
+#         # Check for frame (i)(i+1)(i+2)
+#         temp_output = predict(i)
+#         if temp_output[0] != [0,0]:
+#             data['X'][data.Frame == i] = temp_output[0][0]
+#             data['Y'][data.Frame == i] = temp_output[0][1]
 
-            if data['Visibility'][data.Frame == i+1].iloc[0] == 0 and (temp_output[1][0],temp_output[1][1])!=(0,0):
-                print(i+1, "IS UPDATED")
-                data['X'][data.Frame == i+1].iloc[0] = temp_output[1][0]
-                data['Y'][data.Frame == i+1].iloc[0] = temp_output[1][1]
-                data['Visibility'][data.Frame == i+1].iloc[0] = 1
+#             if data['Visibility'][data.Frame == i+1].iloc[0] == 0 and (temp_output[1][0],temp_output[1][1])!=(0,0):
+#                 print(i+1, "IS UPDATED")
+#                 data['X'][data.Frame == i+1].iloc[0] = temp_output[1][0]
+#                 data['Y'][data.Frame == i+1].iloc[0] = temp_output[1][1]
+#                 data['Visibility'][data.Frame == i+1].iloc[0] = 1
 
-            if data['Visibility'][data.Frame == i+2].iloc[0] == 0 and (temp_output[2][0],temp_output[2][1])!=(0,0):
-                print(i+2, "IS UPDATED")
-                data['X'][data.Frame == i+2].iloc[0] = temp_output[2][0]
-                data['Y'][data.Frame == i+2].iloc[0] = temp_output[2][1]
-                data['Visibility'][data.Frame == i+2].iloc[0] = 1
+#             if data['Visibility'][data.Frame == i+2].iloc[0] == 0 and (temp_output[2][0],temp_output[2][1])!=(0,0):
+#                 print(i+2, "IS UPDATED")
+#                 data['X'][data.Frame == i+2].iloc[0] = temp_output[2][0]
+#                 data['Y'][data.Frame == i+2].iloc[0] = temp_output[2][1]
+#                 data['Visibility'][data.Frame == i+2].iloc[0] = 1
 
-            continue
+#             continue
 
 
 
-# filling gaps between excatly two points
-prev_frame = -1
-flag = False
-for i in data.Frame:
-    if data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == False:
-        prev_frame = i
-    elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == False:
-        flag = True
-    elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == True:
-        flag = False 
-    elif data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == True:
-        data['Visibility'][data.Frame == i-1] = 1 
-        data['X'][data.Frame == i-1] = (data['X'][data.Frame == i].iloc[0] + data['X'][data.Frame == prev_frame].iloc[0])/2
-        data['Y'][data.Frame == i-1] = (data['Y'][data.Frame == i].iloc[0] + data['Y'][data.Frame == prev_frame].iloc[0])/2
-        flag = False
-        print(f"Data {i-1} is Updated!")   
+# # filling gaps between excatly two points
+# prev_frame = -1
+# flag = False
+# for i in data.Frame:
+#     if data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == False:
+#         prev_frame = i
+#     elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == False:
+#         flag = True
+#     elif data['Visibility'][data.Frame == i].iloc[0] == 0 and flag == True:
+#         flag = False 
+#     elif data['Visibility'][data.Frame == i].iloc[0] != 0 and flag == True:
+#         data['Visibility'][data.Frame == i-1] = 1 
+#         data['X'][data.Frame == i-1] = (data['X'][data.Frame == i].iloc[0] + data['X'][data.Frame == prev_frame].iloc[0])/2
+#         data['Y'][data.Frame == i-1] = (data['Y'][data.Frame == i].iloc[0] + data['Y'][data.Frame == prev_frame].iloc[0])/2
+#         flag = False
+#         print(f"Data {i-1} is Updated!")   
 
 fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')  
 out_vid = cv2.VideoWriter(OUTPUT, fourcc, frame_rate, (width, height),True)
@@ -218,6 +218,9 @@ out_vid = cv2.VideoWriter(OUTPUT, fourcc, frame_rate, (width, height),True)
 
 frame_idx = 2
 while(frame_idx <= total_frame-2):
+    # if frame_idx > 3000:
+    #     break
+    print(frame_idx)
     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
     _, image_3 = cap.read()
 
