@@ -28,7 +28,7 @@ options:
 Note: WE recommend you to use default opetions for first one.
 
 """
-from utils.volleydataset import VollyDataset, VollyDatasetV2
+from utils.volleydataset import VollyDataset, VollyDatasetV2, VollyDatasetV3
 from sklearn.model_selection import train_test_split
 from utils.focalloss import FocalLoss, FocalLoss2
 from utils.validation import outcome, evaluation
@@ -81,14 +81,14 @@ else:
 data_train, data_val = train_test_split(pd.read_csv(dataset_path), test_size=0.03, random_state=5)
 
 # Load Train Dataset 
-volley_dataset    = VollyDatasetV2(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
+volley_dataset    = VollyDatasetV3(data_train, r=R, width=WIDTH, height=HEIGHT, name='Training')
 if CUDA:
     volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True, num_workers=WORKERS,pin_memory= True)
 else:
     volley_dataloader = DataLoader(volley_dataset, batch_size= BATCH_SIZE, shuffle=True)
 
 # Load Validation dataset
-volley_dataset_val = VollyDatasetV2(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
+volley_dataset_val = VollyDatasetV3(data_val, r=R, width=WIDTH, height=HEIGHT, name='Validation')
 
 
 # Loading Model

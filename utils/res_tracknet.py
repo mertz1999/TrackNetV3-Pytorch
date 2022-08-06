@@ -139,7 +139,7 @@ class ResNet_Track(nn.Module):
     """
         This b block is combination of encoder and decoder parts of out model.
     """
-    def __init__(self, in_channels=5, pre_channel=64, structure=[3,3,4,3], num_filters=[16,32,64,128]):
+    def __init__(self, in_channels=9, pre_channel=64, structure=[3,3,4,3], num_filters=[16,32,64,128]):
         super(ResNet_Track, self).__init__()
         self.in_channels = in_channels
         self.structure   = structure
