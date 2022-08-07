@@ -23,7 +23,7 @@ import cv2
 ########################## Functions ############################
 # Make gray scale image
 def base_transform(img):
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, (WIDTH, HEIGHT))
     return img
 
@@ -133,8 +133,8 @@ while(frame_idx <= total_frame-2):
         image_1, image_2, image_3 = map(base_transform, [image_1, image_2, image_3])
 
         # Apply transform to inputs images 
-        input_images        = np.zeros((HEIGHT, WIDTH, 5), dtype=np.uint8)
-        input_images[:,:,0] = image_1; input_images[:,:,1] = image_2; input_images[:,:,2] = image_5; input_images[:,:,3] = image_3; input_images[:,:,4] = image_4
+        input_images        = np.zeros((HEIGHT, WIDTH, 9), dtype=np.uint8)
+        input_images[:,:,0:3] = image_1; input_images[:,:,3:6] = image_2; input_images[:,:,6:9] = image_3
         input_images        = transform(input_images).unsqueeze(0)
 
 
