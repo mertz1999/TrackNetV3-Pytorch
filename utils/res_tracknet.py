@@ -139,7 +139,7 @@ class ResNet_Track(nn.Module):
     """
         This b block is combination of encoder and decoder parts of out model.
     """
-    def __init__(self, in_channels=9, pre_channel=64, structure=[3,3,4,3], num_filters=[16,32,64,128]):
+    def __init__(self, in_channels=9, pre_channel=32, structure=[3,3,3,4,3], num_filters=[16,32,64,128,256]):
         super(ResNet_Track, self).__init__()
         self.in_channels = in_channels
         self.structure   = structure
@@ -159,22 +159,26 @@ class ResNet_Track(nn.Module):
         )
 
         # Encoder part of model
-        self.block_1 = self.build_block(64                   , self.structure[0], self.num_filters[0], strides=2)
+        self.block_1 = self.build_block(self.pre_channel     , self.structure[0], self.num_filters[0], strides=2)
         self.block_2 = self.build_block(self.num_filters[0]*2, self.structure[1], self.num_filters[1], strides=2)
         self.block_3 = self.build_block(self.num_filters[1]*2, self.structure[2], self.num_filters[2], strides=2)
         self.block_4 = self.build_block(self.num_filters[2]*2, self.structure[3], self.num_filters[3], strides=2)
+        self.block_5 = self.build_block(self.num_filters[3]*2, self.structure[4], self.num_filters[4], strides=2)
 
         # Decoder
-        self.conv_t1 = ResNet_Transpose(self.num_filters[3]*2, self.num_filters[3], upsample=2)
-        self.conv_d1 = self.build_block(self.num_filters[3]*2, (structure[2]-1), self.num_filters[3], strides=1, decoder=True)
+        self.conv_t1 = ResNet_Transpose(self.num_filters[4]*2, self.num_filters[4], upsample=2)
+        self.conv_d1 = self.build_block(self.num_filters[4]*2, (structure[3]-1), self.num_filters[4], strides=1, decoder=True)
 
-        self.conv_t2 = ResNet_Transpose(self.num_filters[3], self.num_filters[2], upsample=2)
-        self.conv_d2 = self.build_block(self.num_filters[2]*2, (structure[1]-1), self.num_filters[2], strides=1, decoder=True)
+        self.conv_t2 = ResNet_Transpose(self.num_filters[4], self.num_filters[3], upsample=2)
+        self.conv_d2 = self.build_block(self.num_filters[3]*2, (structure[2]-1), self.num_filters[3], strides=1, decoder=True)
 
-        self.conv_t3 = ResNet_Transpose(self.num_filters[2], self.num_filters[1], upsample=2)
-        self.conv_d3 = self.build_block(self.num_filters[1]*2, (structure[0]-1), self.num_filters[1], strides=1, decoder=True)
+        self.conv_t3 = ResNet_Transpose(self.num_filters[3], self.num_filters[2], upsample=2)
+        self.conv_d3 = self.build_block(self.num_filters[2]*2, (structure[1]-1), self.num_filters[2], strides=1, decoder=True)
 
-        self.conv_t4 = ResNet_Transpose(self.num_filters[1], self.num_filters[0], upsample=2)
+        self.conv_t4 = ResNet_Transpose(self.num_filters[2], self.num_filters[1], upsample=2)
+        self.conv_d4 = self.build_block(self.num_filters[1]*2, (structure[0]-1), self.num_filters[1], strides=1, decoder=True)
+
+        self.conv_t5 = ResNet_Transpose(self.num_filters[1], self.num_filters[0], upsample=2)
 
 
         # Initial block of model
@@ -215,22 +219,27 @@ class ResNet_Track(nn.Module):
         e2 = self.block_2(e1)
         e3 = self.block_3(e2)
         e4 = self.block_4(e3)
+        e5 = self.block_5(e4)
 
         # Decoder block + concatenation
-        d_u3 = self.conv_t1(e4)
+        d_u4 = self.conv_t1(e5)
+        d_u4 = torch.cat((d_u4, e4), dim=1)
+        d_c4 = self.conv_d1(d_u4)
+
+        d_u3 = self.conv_t2(d_c4)
         d_u3 = torch.cat((d_u3, e3), dim=1)
-        d_c3 = self.conv_d1(d_u3)
+        d_c3 = self.conv_d2(d_u3)
 
-        d_u2 = self.conv_t2(d_c3)
+        d_u2 = self.conv_t3(d_c3)
         d_u2 = torch.cat((d_u2, e2), dim=1)
-        d_c2 = self.conv_d2(d_u2)
+        d_c2 = self.conv_d3(d_u2)
 
-        d_u1 = self.conv_t3(d_c2)
+        d_u1 = self.conv_t4(d_c2)
         d_u1 = torch.cat((d_u1, e1), dim=1)
-        d_c1 = self.conv_d3(d_u1)
+        d_c1 = self.conv_d4(d_u1)
 
         # Last upsampling and last layers to create output
-        output = self.conv_t4(d_c1)
+        output = self.conv_t5(d_c1)
         output = self.last(output)
 
         return torch.sigmoid(output)

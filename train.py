@@ -37,6 +37,7 @@ from torch.utils.data import DataLoader
 from logging import raiseExceptions
 from torch.optim import Adadelta
 import matplotlib.pyplot as plt
+from torchsummary import summary
 from utils.utils import Print
 from parser import parser
 import torch.nn as nn
@@ -93,6 +94,9 @@ volley_dataset_val = VollyDatasetV3(data_val, r=R, width=WIDTH, height=HEIGHT, n
 
 # Loading Model
 model = ResNet_Track().to(device)
+# summary(model, (9, 288, 512))
+# print(model)
+# exit()
 # model.last[6].bias.data.fill_(-3.2)
 
 if LOAD_MODEL != 'None':
