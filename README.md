@@ -61,6 +61,10 @@ before start training you need to make your dataset correctly. your dataset stru
 ```
 
 use our modified tracknetv2 labeling tool from here.
+Also you need to merge all csv ball labeled file ***(merge_dataset.py)***. so if you have new dataset you must yse merge_dataset.py file:
+```shell
+python merge_dataset.py ./games
+```
 
 for training use ***train.py*** file. This file has multiple switch and inputs that you can access them with ***-h***.
 ```shell
@@ -88,6 +92,21 @@ options:
   --alpha               Focal loss Alpha(default: 0.85)
   --gamma               Focal loss gamma(default: 1)
 ```
+
+all information will be saved based on --log option because we use this file for future to making acc, prec, ... charts.
+
+
+## Inference
+For predict location of ball in a video file, use ***predict_video.py***.
+```
+python predict_video.py VIDEO_PATH MODEL_PATH WIDTH HEIGHT
+``` 
+for example:
+```
+python predict_video.py './games/1/1_01.mp4' './models/last_model.pt' 512 288
+``` 
+keep in mind that this file make .csv and .mp4 file for you next to the video path. (ex. 1_01_predicted.mp4, 1_01_predicted.csv)
+
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 ## About Branches
