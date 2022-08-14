@@ -6,15 +6,15 @@ This repo contains modification models based on TrackNetv2 and we use Pytorch fr
 
 ## About Branches
 We Implement multiple models to test which one is best.  <br/>
-**Explain branches:**
-**1. main:**
-This model has **4** inputs and **1** output. one of the inputs is motion channel so we have this structure:
-inputs:
+**Explain branches:** <br/>
+**1. main:** <br/>
+This model has **4** inputs and **1** output. one of the inputs is motion channel so we have this structure: <br/>
+inputs: <br/>
 
-> frame_1
->  frame_2 
->  frame_3 
->  motion(frame_1, frame_2, frame_3)
+> frame_1 <br/>
+>  frame_2  <br/>
+>  frame_3  <br/>
+>  motion(frame_1, frame_2, frame_3) <br/>
 
 outputs:
 > frame_1 prediction
