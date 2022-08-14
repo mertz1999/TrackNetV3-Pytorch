@@ -43,39 +43,52 @@ print(CUDA)
 before start training you need to make your dataset correctly. your dataset structure must be in this format:
 
 ```
-
 .
-
 └── games
-
-├── 1
-
-│ ├── 1_01.mp4
-
-│ ├── 1_01_ball.csv
-
-│ ├── 1_02.mp4
-
-│ └── 1_02_ball.csv
-
-├── 2
-
-│ └── ...
-
-├── 3
-
-│ └── ...
-
-├── 4
-
-│ └── ...
-
-└── ...
+    ├── 1
+    │   ├── 1_01.mp4
+    │   ├── 1_01_ball.csv
+    │   ├── 1_02.mp4
+    │   └── 1_02_ball.csv
+    ├── 2
+    │   └── ...
+    ├── 3
+    │   └── ...
+    ├── 4
+    │   └── ...
+    └── ...
 
 ```
 
 use our modified tracknetv2 labeling tool from here.
 
+for training use ***train.py*** file. This file has multiple switch and inputs that you can access them with ***-h***.
+```shell
+python train.py -h
+```
+
+```
+usage: train.py [-h] [--HEIGHT HEIGHT] [--WIDTH WIDTH] [--start START] [--epochs EPOCHS] [--load_weights LOAD_WEIGHTS] [--save_path SAVE_PATH] [--log LOG] [--sigma SIGMA] [--tol TOL] [--batch_size BATCH_SIZE] [--lr LR] [--dataset DATASET] [--worker WORKER] [--alpha ALPHA] [--gamma GAMMA]
+
+options:
+  -h, --help            show this help message and exit
+  --HEIGHT              height of image input(default: 288)
+  --WIDTH               width of image input(default: 512)
+  --start               Starting epoch(default: 0)
+  --epochs              number of training epochs(default: 50)
+  --load_weights        path to load pre-trained weights(default: None)
+  --save_path           path to load pre-trained weights(default: ./models)
+  --log                 path to log file(default: ./log.txt)
+  --sigma               radius of circle generated in heat map(default: 5)
+  --tol                 acceptable tolerance of heat map circle center between ground truth and prediction(default: 10.0)
+  --batch_size          batch size(default: 16)
+  --lr                  initial learning rate(default: 1)
+  --dataset             Path of dataset (merged dataset)
+  --worker              Number of worker to increase speed (default: 1
+  --alpha               Focal loss Alpha(default: 0.85)
+  --gamma               Focal loss gamma(default: 1)
+```
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 ## About Branches
 We Implement multiple models to test which one is best.  <br/>
