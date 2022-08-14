@@ -30,6 +30,7 @@ Then you need to install pre-requirements. for that use this block of code:
 python -m pip install -f requirements.txt
 ```
 Also you need to install CUDA version of Pytorch from [here](https://pytorch.org/get-started/locally/) and CUDA toolkit from NVIDIA [official webpage](https://developer.nvidia.com/cuda-downloads).
+
 For faster running is recommended to install [cuDNN](https://developer.nvidia.com/cudnn)
 
 
@@ -78,3 +79,20 @@ outputs: <br/>
 > frame_2 prediction <br/>
 > frame_3 prediction <br/>
 
+
+
+
+.
+└── games
+    ├── 1
+    │   ├── 1_01.mp4
+    │   ├── 1_01_ball.csv
+    │   ├── 1_02.mp4
+    │   └── 1_02_ball.csv
+    ├── 2
+    │   └── ...
+    ├── 3
+    │   └── ...
+    ├── 4
+    │   └── ...
+    └── ...
