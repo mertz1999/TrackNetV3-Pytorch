@@ -43,7 +43,20 @@ print(CUDA)
 before start training you need to make your dataset correctly. your dataset structure must be in this format:
 
 ```
-. └── games ├── 1 │ ├── 1_01.mp4 │ ├── 1_01_ball.csv │ ├── 1_02.mp4 │ └── 1_02_ball.csv ├── 2 │ └── ... ├── 3 │ └── ... ├── 4 │ └── ... └── ...
+.
+└── games
+    ├── 1
+    │   ├── 1_01.mp4
+    │   ├── 1_01_ball.csv
+    │   ├── 1_02.mp4
+    │   └── 1_02_ball.csv
+    ├── 2
+    │   └── ...
+    ├── 3
+    │   └── ...
+    ├── 4
+    │   └── ...
+    └── ...
 ```
 
 
