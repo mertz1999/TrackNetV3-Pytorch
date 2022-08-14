@@ -5,7 +5,7 @@
 This repo contains modification models based on TrackNetv2 and we use Pytorch framework for development.
 
 ## About Branches
-We Implement multiple models to test which one is best. 
+We Implement multiple models to test which one is best.  <br/>
 **Explain branches:**
 **1. main:**
 This model has **4** inputs and **1** output. one of the inputs is motion channel so we have this structure:
