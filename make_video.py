@@ -211,7 +211,7 @@ fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
 out_vid = cv2.VideoWriter(OUTPUT, fourcc, frame_rate, (width, height),True)
 
 
-frame_idx = 2
+frame_idx = 0
 while(frame_idx <= total_frame-2):
     # if frame_idx > 3000:
     #     break
