@@ -112,6 +112,12 @@ python predict_video.py './games/1/1_01.mp4' './models/last_model.pt' 512 288
 ``` 
 keep in mind that this file make .csv and .mp4 file for you next to the video path. (ex. 1_01_predicted.mp4, 1_01_predicted.csv)
 
+## Make Chart
+After running training part you can pass your log.txt file to make_chart.py file.
+```shell
+python make_chart.py './log.txt'
+```
+Then you can see ***./result*** folder for seeing chart images.
 <br/><br/><br/>
 
 ## About Branches
