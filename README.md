@@ -23,7 +23,7 @@ First and foremost you need to clone one of the branch that you need to train or
 ``` shell
 git clone --branch branch_name git@github.com:volleyanalyzer/TrackNetV3-Pytorch.git
 ```
-because this repository is private, you must to use ssh method for cloning. or set your github username and password for in your local git. 
+because this repository is private, you must to use ssh method for cloning or set your github username and password for in your local git. 
 
 Then you need to install pre-requirements. for that use this block of code:
 ```shell
@@ -40,7 +40,9 @@ print(CUDA)
 ```
 
 ## Training
-before start training you need to make your dataset correctly. your dataset structure must be in this format:
+before start training you need to make your dataset correctly.
+
+your dataset structure must be in this format:
 
 ```
 .
@@ -61,7 +63,10 @@ before start training you need to make your dataset correctly. your dataset stru
 ```
 
 use our modified tracknetv2 labeling tool from here.
-Also you need to merge all csv ball labeled file ***(merge_dataset.py)***. so if you have new dataset you must yse merge_dataset.py file:
+
+Also you need to merge all csv ball labeled file ***(merge_dataset.csv)***.
+
+if you have new dataset you must yse merge_dataset.py file:
 ```shell
 python merge_dataset.py ./games
 ```
@@ -107,7 +112,7 @@ python predict_video.py './games/1/1_01.mp4' './models/last_model.pt' 512 288
 ``` 
 keep in mind that this file make .csv and .mp4 file for you next to the video path. (ex. 1_01_predicted.mp4, 1_01_predicted.csv)
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/>
 
 ## About Branches
 We Implement multiple models to test which one is best.  <br/>
