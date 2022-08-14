@@ -26,19 +26,19 @@ This model has **5** inputs and **3** output.  <br/>
 >  motion(frame_1, frame_2) <br/>
 >  frame_3  <br/>
 >  motion(frame_2, frame_3) <br/>
-<br/>
+
 outputs: <br/>
 > frame_1 prediction <br/>
 > frame_2 prediction <br/>
 > frame_3 prediction <br/>
 > 
-<br/>
+
 **3. 9in3out** <br/>
 This model has **9** inputs and **3** output.  <br/>
 > frame_1_RGB <br/>
 >  frame_2 _RGB <br/>
 >  frame_3 _RGB <br/>
-<br/>
+
 outputs: <br/>
 > frame_1 prediction <br/>
 > frame_2 prediction <br/>
