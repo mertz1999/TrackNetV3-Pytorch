@@ -3,6 +3,40 @@
 
 # TrackNetV3 Pytoch
 This repo contains modification models based on TrackNetv2 and we use Pytorch framework for development.
+This repo is based on:
+- [Orginal TrackNetv2](https://nol.cs.nctu.edu.tw:234/open-source/TrackNetv2.git)
+- [Modified TrackNetv2](https://github.com/Chang-Chia-Chi/TrackNet-Badminton-Tracking-tensorflow2)
+- [Pytorch FocalLoss](https://github.com/mathiaszinnen/focal_loss_torch/blob/main/focal_loss/focal_loss.py)
+
+
+
+## Requirements
+- Python
+- Pytorch
+- CUDA
+- CUDNN
+
+
+## How to install
+First and foremost you need to clone one of the branch that you need to train or make prediction.
+
+``` shell
+git clone --branch branch_name git@github.com:volleyanalyzer/TrackNetV3-Pytorch.git
+```
+because this repository is private, you must to use ssh method for cloning. or set your github username and password for in your local git. 
+
+Then you need to install pre-requirements. for that use this block of code:
+```shell
+python -m pip install -f requirements.txt
+```
+Also you need to install CUDA version of Pytorch from [here](https://pytorch.org/get-started/locally/) and CUDA toolkit from NVIDIA [official webpage](https://developer.nvidia.com/cuda-downloads).
+For faster running is recommended to install [cuDNN](https://developer.nvidia.com/cudnn)
+
+
+
+
+
+
 
 ## About Branches
 We Implement multiple models to test which one is best.  <br/>
@@ -44,11 +78,3 @@ outputs: <br/>
 > frame_2 prediction <br/>
 > frame_3 prediction <br/>
 
-
-## Requirements
-- Python
-- Pytorch
-- CUDA
-- CUDNN
-
-## How to install
