@@ -182,7 +182,7 @@ while(frame_idx <= total_frame-2):
         
         # plt.imshow(input_images_list[channel]);plt.show()
 
-        # out_vid.write(input_images_list[channel])
+        out_vid.write(input_images_list[channel])
 
     frame_idx += 3
 
